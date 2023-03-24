@@ -1,0 +1,103 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath}.impl;
+
+import com.baomidou.mybatisplus.${cfg.childModelName}.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.PageHelper;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}PageRequestDTO;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}RequestDTO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo.${table.entityPath}.${entity}BO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo.${table.entityPath}.${entity}RequestBO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert.${table.entityPath}.${entity}Struct;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity.${table.entityPath}.${entity}DO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.mapper.${table.entityPath}.${entity}Mapper;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath}.I${entity}Service;
+import com.ideal.hos.common.common.CommonPage;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}DO> implements ${table.serviceName} {
+
+    @Override
+    public Boolean save${entity}(${entity}RequestBO ${table.entityPath}RequestBo) {
+        ${entity}DO ${table.entityPath}Do = ${entity}Struct.INSTANCE.boToDo(${table.entityPath}RequestBo);
+        return save(${table.entityPath}Do);
+    }
+    @Override
+    public Boolean saveBatch${entity}(List<${entity}RequestBO> ${table.entityPath}RequestBoList) {
+        List<${entity}DO> ${table.entityPath}DoList = ${entity}Struct.INSTANCE.boToDo(${table.entityPath}RequestBoList);
+        return saveBatch(${table.entityPath}DoList);
+    }
+
+    @Override
+    public Boolean update${entity}ById(${entity}RequestBO ${table.entityPath}RequestBo) {
+        ${entity}DO ${table.entityPath}Do = ${entity}Struct.INSTANCE.boToDo(${table.entityPath}RequestBo);
+        return updateById(${table.entityPath}Do);
+    }
+
+    @Override
+    public Boolean deleteByIds(List<Long> ids) {
+        return deleteByIds(ids);
+    }
+
+    @Override
+    public Boolean logicDeleteByIds(List<Long> ids) {
+        Collection<${entity}DO> ${table.entityPath}Dos = listByIds(ids);
+        ${table.entityPath}Dos.forEach(${table.entityPath}Do -> ${table.entityPath}Do.setIsDeleted(Boolean.TRUE));
+        return updateBatchById(${table.entityPath}Dos);
+    }
+
+    @Override
+    public ${entity}BO get${entity}VoById(Long id) {
+        ${entity}DO ${table.entityPath}Do = getById(id);
+        ${entity}BO ${table.entityPath}Bo = ${entity}Struct.INSTANCE.doToBo(${table.entityPath}Do);
+        return ${table.entityPath}Bo;
+    }
+
+    @Override
+    public List<${entity}BO> findListByCondition(${entity}RequestDTO ${table.entityPath}RequestDto) {
+        QueryWrapper<${entity}DO> queryWrapper = new QueryWrapper<>();
+        List<${entity}DO> ${table.entityPath}DoList = ${cfg.modelName}Mapper.selectList(queryWrapper);
+        if (!CollectionUtils.isEmpty(${table.entityPath}DoList)) {
+            List<${entity}BO> ${table.entityPath}BoList = ${entity}Struct.INSTANCE.doToBo(${table.entityPath}DoList);
+            return ${table.entityPath}BoList;
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    public CommonPage pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDto) {
+        PageHelper.startPage(${table.entityPath}PageRequestDto.getPageNum(), ${table.entityPath}PageRequestDto.getPageSize());
+        List<${entity}DO> ${table.entityPath}Dos = ${cfg.modelName}Mapper.pageList(${table.entityPath}PageRequestDto);
+        CommonPage restPage = CommonPage.restPage(${table.entityPath}Dos);
+        List<${entity}BO> ${table.entityPath}BoList  = ${entity}Struct.INSTANCE.doToBo(restPage.getRecords());
+        restPage.setRecords(${table.entityPath}BoList);
+        return restPage;
+    }
+
+    @Override
+    public Map<Long, ${entity}DO> map${entity}DoByIds(Collection<Long> ids) {
+        if (!CollectionUtils.isEmpty(ids)){
+            Collection<${entity}DO> ${table.entityPath}Dos = listByIds(ids);
+            if (!CollectionUtils.isEmpty(ids)){
+                return ${table.entityPath}Dos.stream().collect(Collectors.toMap(${entity}DO::getId, Function.identity()));
+            }
+        }
+        return Collections.emptyMap();
+    }
+}

@@ -1,0 +1,67 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert.${table.entityPath};
+
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}DTO;
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}PageRequestDTO;
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}RequestDTO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}PageParam;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}Param;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo.${table.entityPath}.${entity}VO;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+import java.util.List;
+/**
+ * <p>
+ * $!{table.comment} 类型转换
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+
+@Mapper(componentModel = "Spring")
+public interface ${entity}Convert {
+    ${entity}Convert INSTANCE = Mappers.getMapper(${entity}Convert.class);
+    /**
+     * 类型转换
+     *
+     * @param ${table.entityPath}ParamList
+     * @return
+     */
+    List<${entity}RequestDTO> paramToRequestDto(List<${entity}Param> ${table.entityPath}ParamList);
+
+    /**
+     * 类型转换
+     *
+     * @param ${table.entityPath}Param
+     * @return
+     */
+    ${entity}RequestDTO paramToRequestDto(${entity}Param ${table.entityPath}Param);
+    /**
+     * 类型转换
+     *
+     * @param ${table.entityPath}PageParam
+     * @return
+     */
+    ${entity}RequestDTO paramToRequestDto(${entity}PageParam ${table.entityPath}PageParam);
+
+    /**
+     * 类型转换
+     * @param ${table.entityPath}DTO
+     * @return
+     */
+    ${entity}VO dtoToVo(${entity}DTO ${table.entityPath}DTO);
+    /**
+     * 类型转换
+     * @param ${table.entityPath}DTOList
+     * @return
+     */
+    List<${entity}VO> dtoToVo(List<${entity}DTO> ${table.entityPath}DTOList);
+
+    /**
+     * 类型转换
+     * @param ${table.entityPath}PageParam
+     * @return
+     */
+    ${entity}PageRequestDTO pageParamToPageRequestDto(${entity}PageParam ${table.entityPath}PageParam);
+}

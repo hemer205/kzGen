@@ -1,0 +1,72 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath};
+
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}DTO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}PageRequestDTO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}RequestDTO;
+import com.ideal.hos.common.common.CommonPage;
+
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 服务类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+
+public interface I${entity}ApiService {
+
+    /**
+     * 保存$!{table.comment}
+     * @param ${table.entityPath}RequestDto
+     * @return
+     */
+
+    Boolean save${entity}(${entity}RequestDTO ${table.entityPath}RequestDto);
+    /**
+     * 保存$!{table.comment}
+     * @param ${table.entityPath}RequestDtoList
+     * @return
+     */
+
+    Boolean saveBatch${entity}(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList);
+
+    /**
+     * 修改$!{table.comment}
+     * @param ${table.entityPath}RequestDto
+     * @return
+     */
+    Boolean update${entity}ById(${entity}RequestDTO ${table.entityPath}RequestDto);
+
+    /**
+     * 根据ID删除
+     * @param ids
+     * @return
+     */
+    Boolean deleteByIds(List<Long> ids);
+
+    /**
+     * 根据ID查询
+     * @param id
+     * @return
+     */
+    ${entity}DTO get${entity}VoById(Long id);
+
+    /**
+     * 根据条件查询
+     * @param ${table.entityPath}RequestDto
+     * @return
+     */
+    List<${entity}DTO> findListByCondition(${entity}RequestDTO ${table.entityPath}RequestDto);
+
+    /**
+     * 分页查询
+     * @param ${table.entityPath}PageRequestDto
+     * @return
+     */
+    CommonPage<${entity}DTO> pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
+
+}
+

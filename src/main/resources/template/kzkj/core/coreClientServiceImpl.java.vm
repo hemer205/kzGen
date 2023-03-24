@@ -1,0 +1,95 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.impl.${table.entityPath};
+
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}DTO;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}PageRequestDTO;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}RequestDTO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo.${table.entityPath}.${entity}BO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo.${table.entityPath}.${entity}RequestBO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert.${table.entityPath}.${entity}Struct;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath}.I${entity}Service;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.service.${table.entityPath}.I${entity}ApiService;
+import com.ideal.hos.common.holder.UserContextHolder;
+import com.ideal.hos.common.common.CommonPage;
+import org.springframework.stereotype.Service;
+import com.ideal.hos.common.utils.InitBeanUtil;
+import com.ideal.hos.common.utils.Constant;
+import java.time.LocalDateTime;
+
+import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+public class ${entity}ApiServiceImpl implements I${entity}ApiService {
+
+    @Resource
+    private I${entity}Service ${table.entityPath}Service;
+
+    @Override
+    public Boolean save${entity}(${entity}RequestDTO ${table.entityPath}RequestDto) {
+        ${entity}RequestBO ${table.entityPath}RequestBo = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDto);
+        //校验数据
+        checkData(${table.entityPath}RequestBo);
+        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(),UserContextHolder.getUser(),Constant.CREATE);
+        return ${table.entityPath}Service.save${entity}(${table.entityPath}RequestBo);
+    }
+    @Override
+    public Boolean saveBatch${entity}(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList) {
+        List<${entity}RequestBO> ${table.entityPath}RequestBoList = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDtoList);
+        InitBeanUtil.init(${table.entityPath}RequestBoList, LocalDateTime.now(),UserContextHolder.getUser(),Constant.CREATE);
+        return ${table.entityPath}Service.saveBatch${entity}(${table.entityPath}RequestBoList);
+    }
+
+    @Override
+    public Boolean update${entity}ById(${entity}RequestDTO ${table.entityPath}RequestDto) {
+        ${entity}RequestBO ${table.entityPath}RequestBo = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDto);
+        //校验数据
+        checkData(${table.entityPath}RequestBo);
+        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(),UserContextHolder.getUser(), Constant.UPDATE);
+        return ${table.entityPath}Service.update${entity}ById(${table.entityPath}RequestBo);
+    }
+
+    @Override
+    public Boolean deleteByIds(List<Long> ids) {
+        return ${table.entityPath}Service.logicDeleteByIds(ids);
+    }
+
+    @Override
+    public ${entity}DTO get${entity}VoById(Long id) {
+        ${entity}BO ${table.entityPath}Bo = ${table.entityPath}Service.get${entity}VoById(id);
+        ${entity}DTO ${table.entityPath}Dto = ${entity}Struct.INSTANCE.boToDto(${table.entityPath}Bo);
+        return ${table.entityPath}Dto;
+    }
+
+    @Override
+    public List<${entity}DTO> findListByCondition(${entity}RequestDTO ${table.entityPath}RequestDTO) {
+        List<${entity}BO> ${table.entityPath}BOList = ${table.entityPath}Service.findListByCondition(${table.entityPath}RequestDTO);
+        List<${entity}DTO> ${table.entityPath}DTOS = ${entity}Struct.INSTANCE.boToDto(${table.entityPath}BOList);
+        return ${table.entityPath}DTOS;
+    }
+
+    @Override
+    public CommonPage<${entity}DTO> pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDTO) {
+        CommonPage commonPage = ${table.entityPath}Service.pageList(${table.entityPath}PageRequestDTO);
+        List<${entity}BO> records = commonPage.getRecords();
+        List<${entity}DTO> ${table.entityPath}DTOS = ${entity}Struct.INSTANCE.boToDto(records);
+        commonPage.setRecords(${table.entityPath}DTOS);
+        return commonPage;
+    }
+
+    /**
+     * 校验数据
+     * @param ${table.entityPath}RequestBo
+     */
+    private void checkData(${entity}RequestBO ${table.entityPath}RequestBo) {
+
+    }
+}

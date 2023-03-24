@@ -1,0 +1,83 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert.${table.entityPath};
+
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}DTO;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}RequestDTO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo.${table.entityPath}.${entity}BO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo.${table.entityPath}.${entity}RequestBO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity.${table.entityPath}.${entity}DO;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 类型转换
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Mapper(componentModel = "Spring")
+public interface ${entity}Struct {
+    ${entity}Struct INSTANCE = Mappers.getMapper(${entity}Struct.class);
+
+    /**
+  * 类型转换  RequestDTO 转 BO
+  *
+  * @param ${table.entityPath}RequestDtoList
+  * @return
+  */
+    List<${entity}RequestBO> requestDtoToBo(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList);
+
+    /**
+     * 类型转换  RequestDTO 转 BO
+     *
+     * @param ${table.entityPath}RequestDto
+     * @return
+     */
+    ${entity}RequestBO requestDtoToBo(${entity}RequestDTO ${table.entityPath}RequestDto);
+
+    /**
+     * 类型转换
+     *
+     * @param ${table.entityPath}RequestBoList
+     * @return
+     */
+    List<${entity}DO> boToDo(List<${entity}RequestBO> ${table.entityPath}RequestBoList);
+
+    /**
+     * 类型转换
+     *
+     * @param ${table.entityPath}RequestBo
+     * @return
+     */
+    ${entity}DO boToDo(${entity}RequestBO ${table.entityPath}RequestB0);
+
+    /**
+     * 类型转换
+     * @param ${table.entityPath}BoList
+     * @return
+     */
+    List<${entity}DTO> boToDto(List<${entity}BO> ${table.entityPath}BoList);
+    /**
+     * 类型转换
+     * @param ${table.entityPath}Bo
+     * @return
+     */
+    ${entity}DTO boToDto(${entity}BO ${table.entityPath}Bo);
+
+    /**
+     * 类型转换
+     * @param ${table.entityPath}Do
+     * @return
+     */
+    ${entity}BO doToBo(${entity}DO ${table.entityPath}Do);
+    /**
+     * 类型转换
+     * @param ${table.entityPath}DoList
+     * @return
+     */
+    List<${entity}BO> doToBo(List<${entity}DO> ${table.entityPath}DoList);
+}
+

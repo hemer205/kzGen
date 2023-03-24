@@ -1,0 +1,124 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.controller.${table.entityPath};
+
+
+import com.ideal.hos.common.common.CommonPage;
+import com.ideal.hos.common.common.CommonResult;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}PageParam;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}Param;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath}.${entity}SibService;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo.${table.entityPath}.${entity}VO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+import javax.validation.Valid;
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 控制层
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+
+@RestController
+@Api(tags = "$!{table.comment}")
+@RequestMapping("/${table.entityPath}")
+@Validated
+public class ${table.controllerName} {
+
+    @Resource
+    private ${entity}SibService ${table.entityPath}SibService;
+    /**
+     * 批量保存$!{table.comment}
+     *
+     * @param ${table.entityPath}ParamList 对象
+     * @return Boolean
+     */
+    @ApiOperation(value = "批量保存")
+    @PostMapping("/saveBatch")
+    public CommonResult<Boolean> save(@RequestBody @Valid List<${entity}Param> ${table.entityPath}ParamList) {
+        return CommonResult.success(${table.entityPath}SibService.saveBatch${entity}(${table.entityPath}ParamList));
+    }
+    /**
+     * 保存$!{table.comment}
+     *
+     * @param ${table.entityPath}Param 对象
+     * @return Boolean
+     */
+    @ApiOperation(value = "保存")
+    @PostMapping("/save")
+    public CommonResult<Boolean> save(@RequestBody @Valid ${entity}Param ${table.entityPath}Param) {
+        return CommonResult.success(${table.entityPath}SibService.save${entity}(${table.entityPath}Param));
+    }
+
+    /**
+     * 根据ID修改$!{table.comment}
+     *
+     * @param ${table.entityPath}Param 对象
+     * @return Boolean
+     */
+    @ApiOperation(value = "根据ID修改")
+    @PostMapping("/updateById")
+    public CommonResult<Boolean> update${entity}ById(@RequestBody @Valid ${entity}Param ${table.entityPath}Param) {
+        return CommonResult.success(${table.entityPath}SibService.update${entity}ById(${table.entityPath}Param));
+    }
+
+    /**
+     * 根据ID集合删除$!{table.comment}
+     *
+     * @param ids
+     * @return Boolean
+     */
+    @ApiOperation(value = "根据ID集合删除")
+    @PostMapping("/deleteByIds")
+    public CommonResult<Boolean> deleteByIds(@RequestBody List<Long> ids) {
+        return CommonResult.success(${table.entityPath}SibService.deleteByIds(ids));
+    }
+
+    /**
+     * 根据ID查询
+     *
+     * @param ${table.entityPath}Param
+     * @return Boolean
+     */
+    @ApiOperation(value = "根据ID查询")
+    @PostMapping("/getById")
+    public CommonResult<${entity}VO> get${entity}VoById(@RequestBody ${entity}Param ${table.entityPath}Param) {
+        return CommonResult.success(${table.entityPath}SibService.get${entity}VoById(${table.entityPath}Param));
+    }
+
+    /**
+     * 根据条件查询
+     *
+     * @param ${table.entityPath}Param
+     * @return Boolean
+     */
+    @ApiOperation(value = "根据条件查询")
+    @PostMapping("/findListByCondition")
+    public CommonResult<List<${entity}VO>> find${entity}List(@RequestBody ${entity}Param ${table.entityPath}Param) {
+        return CommonResult.success(${table.entityPath}SibService.findListByCondition(${table.entityPath}Param));
+    }
+
+    /**
+     * 根据条件分页查询
+     *
+     * @param ${table.entityPath}PageParam
+     * @return Boolean
+     */
+    @ApiOperation(value = "根据条件分页查询")
+    @PostMapping("/pageList")
+    public CommonResult<CommonPage<${entity}VO>> pageList(@RequestBody ${entity}PageParam ${table.entityPath}PageParam) {
+        CommonPage<${entity}VO> pageVOList = ${table.entityPath}SibService.pageList(${table.entityPath}PageParam);
+        return CommonResult.success(pageVOList);
+    }
+
+
+}

@@ -1,0 +1,76 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath}.impl;
+
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}DTO;
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}PageRequestDTO;
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}RequestDTO;
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.service.${table.entityPath}.I${entity}ApiService;
+import com.ideal.hos.common.common.CommonPage;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert.${table.entityPath}.${entity}Convert;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}PageParam;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}Param;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath}.${entity}SibService;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo.${table.entityPath}.${entity}VO;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+public class ${entity}SibServiceImpl implements ${entity}SibService {
+
+    @Resource
+    private I${entity}ApiService ${table.entityPath}ApiService;
+    @Override
+    public Boolean save${entity}(${entity}Param ${table.entityPath}Param) {
+        ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
+        return ${table.entityPath}ApiService.save${entity}(${table.entityPath}RequestDto);
+    }
+    @Override
+    public Boolean saveBatch${entity}(List<${entity}Param> ${table.entityPath}ParamList) {
+        List<${entity}RequestDTO> ${table.entityPath}RequestDtoList = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}ParamList);
+        return ${table.entityPath}ApiService.saveBatch${entity}(${table.entityPath}RequestDtoList);
+    }
+
+    @Override
+    public Boolean update${entity}ById(${entity}Param ${table.entityPath}Param) {
+        ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
+        return ${table.entityPath}ApiService.update${entity}ById(${table.entityPath}RequestDto);
+    }
+
+    @Override
+    public Boolean deleteByIds(List<Long> ids) {
+        return ${table.entityPath}ApiService.deleteByIds(ids);
+    }
+
+    @Override
+    public ${entity}VO get${entity}VoById(${entity}Param ${table.entityPath}Param) {
+        ${entity}DTO ${table.entityPath}Dto =  ${table.entityPath}ApiService.get${entity}VoById(${table.entityPath}Param.getId());
+        ${entity}VO ${table.entityPath}Vo = ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
+        return ${table.entityPath}Vo;
+    }
+
+    @Override
+    public List<${entity}VO> findListByCondition(${entity}Param ${table.entityPath}Param) {
+        ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
+        List<${entity}DTO> ${table.entityPath}DtoList = ${table.entityPath}ApiService.findListByCondition(${table.entityPath}RequestDto);
+        List<${entity}VO> ${table.entityPath}Vos = ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}DtoList);
+        return ${table.entityPath}Vos;
+    }
+
+    @Override
+    public CommonPage<${entity}VO> pageList(${entity}PageParam ${table.entityPath}PageParam) {
+        ${entity}PageRequestDTO ${table.entityPath}PageRequestDto = ${entity}Convert.INSTANCE.pageParamToPageRequestDto(${table.entityPath}PageParam);
+        CommonPage result = ${table.entityPath}ApiService.pageList(${table.entityPath}PageRequestDto);
+        List<${entity}DTO> ${table.entityPath}Dtos = result.getRecords();
+        result.setRecords(${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dtos));
+        return result;
+    }
+}
