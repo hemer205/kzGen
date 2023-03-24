@@ -1,0 +1,25 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.mapper.${table.entityPath};
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}PageRequestDTO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity.${table.entityPath}.${entity}DO;
+
+import java.util.List;
+/**
+ * <p>
+ * $!{table.comment} Mapper 接口
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+
+public interface ${table.mapperName} extends ${superMapperClass}<${entity}DO> {
+
+        /**
+         * 分页查询
+         * @param ${table.entityPath}PageRequestDto
+         * @return
+         */
+        List<${entity}DO> pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
+}

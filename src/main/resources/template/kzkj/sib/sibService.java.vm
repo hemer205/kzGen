@@ -1,0 +1,74 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath};
+
+
+import com.ideal.hos.common.common.CommonPage;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}PageParam;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}Param;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo.${table.entityPath}.${entity}VO;
+
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 服务类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+public interface ${entity}SibService {
+
+
+    /**
+     * 保存$!{table.comment}
+     *
+     * @param ${table.entityPath}Param
+     * @return
+     */
+    Boolean save${entity}(${entity}Param ${table.entityPath}Param);
+
+    /**
+     * 保存$!{table.comment}
+     *
+     * @param ${table.entityPath}ParamList
+     * @return
+     */
+    Boolean saveBatch${entity}(List<${entity}Param> ${table.entityPath}ParamList);
+
+    /**
+     * 根据ID修改
+     *
+     * @param ${table.entityPath}Param
+     * @return
+     */
+    Boolean update${entity}ById(${entity}Param ${table.entityPath}Param);
+
+    /**
+     * 根据ID集合删除
+     * @param ids
+     * @return
+     */
+    Boolean deleteByIds(List<Long> ids);
+
+    /**
+     * 根据ID查询
+     * @param ${table.entityPath}Param
+     * @return
+     */
+    ${entity}VO get${entity}VoById(${entity}Param ${table.entityPath}Param);
+
+    /**
+     * 根据条件查询
+     * @param ${table.entityPath}Param
+     * @return
+     */
+    List<${entity}VO> findListByCondition(${entity}Param ${table.entityPath}Param);
+
+    /**
+     * 分页查询
+     * @param ${table.entityPath}PageParam
+     * @return
+     */
+    CommonPage<${entity}VO> pageList(${entity}PageParam ${table.entityPath}PageParam);
+
+}

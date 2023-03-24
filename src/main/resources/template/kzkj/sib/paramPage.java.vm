@@ -1,0 +1,58 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath};
+
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+#if(${chainModel})
+import lombok.experimental.Accessors;
+#end
+
+
+/**
+ * <p>
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${entityLombokModel})
+@Data
+  #if(${superEntityClass})
+@EqualsAndHashCode(callSuper = true)
+  #else
+@EqualsAndHashCode(callSuper = false)
+  #end
+  #if(${chainModel})
+@Accessors(chain = true)
+  #end
+#end
+@ApiModel(value="${entity}ParamPage对象视图", description="$!{table.comment}视图")
+#if(${superEntityClass})
+public class ${entity}PageParam extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
+#elseif(${activeRecord})
+public class ${entity}PageParam extends Model<${entity}> {
+#else
+public class ${entity}PageParam implements Serializable {
+#end
+
+#if(${entitySerialVersionUID})
+    private static final long serialVersionUID = ${cfg.paramPage}L;
+#end
+## ----------  BEGIN 字段循环遍历  ----------
+    /**
+     * 当前页码
+     */
+    @ApiModelProperty(value = "当前页码")
+    private Integer pageNum;
+    /**
+     * 每页数量
+     */
+    @ApiModelProperty(value = "每页数量")
+    private Integer pageSize;
+}

@@ -1,0 +1,54 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.dto.${table.entityPath};
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+#if(${entityLombokModel})
+import lombok.Data;
+import jdk.jfr.Description;
+import lombok.EqualsAndHashCode;
+#end
+
+
+/**
+ * <p>
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${entityLombokModel})
+@Data
+  #if(${superEntityClass})
+@EqualsAndHashCode(callSuper = true)
+  #else
+@EqualsAndHashCode(callSuper = false)
+  #end
+  #if(${chainModel})
+@Accessors(chain = true)
+  #end
+#end
+#if(${superEntityClass})
+public class ${entity}PageRequestDTO extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
+#elseif(${activeRecord})
+public class ${entity}PageRequestDTO extends Model<${entity}> {
+#else
+public class ${entity}PageRequestDTO implements Serializable {
+#end
+
+#if(${entitySerialVersionUID})
+    private static final long serialVersionUID = ${cfg.clientRequestPageDTO}L;
+#end
+    /**
+     * 当前页
+     */
+    @Description(value = "当前页码")
+    private Integer pageNum;
+
+    /**
+     * 每页显示条数
+     */
+    @Description(value = "每页显示条数")
+    private Integer pageSize;
+}
