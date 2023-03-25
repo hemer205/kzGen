@@ -1,6 +1,5 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.controller${cfg.sonPath};
 
-
 import com.ideal.hos.common.common.CommonPage;
 import com.ideal.hos.common.common.CommonResult;
 import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}PageParam;
@@ -15,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotEmpty;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
@@ -79,7 +79,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "根据ID集合删除")
     @PostMapping("/deleteByIds")
-    public CommonResult<Boolean> deleteByIds(@RequestBody List<Long> ids) {
+    public CommonResult<Boolean> deleteByIds(@RequestBody @NotEmpty(message = "参数 IDS 不能为空！")  List<Long> ids) {
         return CommonResult.success(${table.entityPath}SibService.deleteByIds(ids));
     }
 
