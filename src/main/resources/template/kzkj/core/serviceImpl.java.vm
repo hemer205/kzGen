@@ -13,10 +13,12 @@ import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.con
 import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO;
 import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.mapper${cfg.sonPath}.${entity}Mapper;
 import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath}.I${entity}Service;
+import com.ideal.hos.common.holder.UserContextHolder;
 import com.ideal.hos.common.common.CommonPage;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -60,7 +62,10 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     @Override
     public Boolean logicDeleteByIds(List<Long> ids) {
         LambdaUpdateWrapper<${entity}DO> wrapper = new LambdaUpdateWrapper<>();
-        wrapper.in(${entity}DO::getId, ids).set(${entity}DO::getIsDeleted, Boolean.TRUE);
+        wrapper.in(${entity}DO::getId, ids)
+                 .set(${entity}DO::getIsDeleted, Boolean.TRUE)
+                 .set(${entity}DO::getUpdateBy, UserContextHolder.getUser().getId())
+                 .set(${entity}DO::getUpdateTime, LocalDateTime.now());
         return update(wrapper);
     }
 
