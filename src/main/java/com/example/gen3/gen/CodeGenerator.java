@@ -40,6 +40,7 @@ public class CodeGenerator {
         // 作者
         String author = "Yi";
         // 表名(逗号隔开)
+        // String tableNameStr = "base_bill_classes，base_bill_sub_classes";
         String tableNameStr = "base_order_group";
         // 包名
         String sonPath = "" ;  // 示例：".workflow"
@@ -440,8 +441,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                            + "service/" + (StringUtils.hasLength(fileSonPath) ? (fileSonPath + "/impl/" +SLASH) : fileSonPath)
-                            + tableInfo.getEntityName() + "SibServiceImpl" + StringPool.DOT_JAVA;
+                            + "service/" + fileSonPath + "impl/" + tableInfo.getEntityName() + "SibServiceImpl" + StringPool.DOT_JAVA;
                 }
             });
 

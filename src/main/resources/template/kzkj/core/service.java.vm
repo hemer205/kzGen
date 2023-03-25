@@ -20,64 +20,65 @@ import java.util.Map;
  * @since ${date}
  */
 public interface ${table.serviceName} extends ${superServiceClass}<${entity}DO> {
-        /**
-          * 保存$!{table.comment}
-          * @param ${cfg.cgildPhth}RequestBo
-          * @return
-          */
-        Boolean save${entity}(${entity}RequestBO ${cfg.cgildPhth}RequestBo);
-        /**
-          * 保存$!{table.comment}
-          * @param ${cfg.cgildPhth}RequestBoList
-          * @return
-          */
-        Boolean saveBatch${entity}(List<${entity}RequestBO> ${cfg.cgildPhth}RequestBoList);
 
-        /**
-         * 修改$!{table.comment}
-         * @param ${cfg.cgildPhth}RequestBo
-         * @return
-         */
-        Boolean update${entity}ById(${entity}RequestBO ${cfg.cgildPhth}RequestBo);
+    /**
+      * 保存$!{table.comment}
+      * @param ${cfg.cgildPhth}RequestBo
+      * @return
+      */
+    Boolean save${entity}(${entity}RequestBO ${cfg.cgildPhth}RequestBo);
+    /**
+      * 保存$!{table.comment}
+      * @param ${cfg.cgildPhth}RequestBoList
+      * @return
+      */
+    Boolean saveBatch${entity}(List<${entity}RequestBO> ${cfg.cgildPhth}RequestBoList);
 
-        /**
-         * 根据ID删除（物理删除）
-         * @param ids
-         * @return
-         */
-        Boolean logicDeleteByIds(List<Long> ids);
-        /**
-         * 根据ID删除（逻辑删除）
-         * @param ids
-         * @return
-         */
-        Boolean deleteByIds(List<Long> ids);
+    /**
+     * 修改$!{table.comment}
+     * @param ${cfg.cgildPhth}RequestBo
+     * @return
+     */
+    Boolean update${entity}ById(${entity}RequestBO ${cfg.cgildPhth}RequestBo);
 
-        /**
-         * 根据ID查询
-         * @param id
-         * @return
-         */
-        ${entity}BO get${entity}VoById(Long id);
+    /**
+     * 根据ID删除（物理删除）
+     * @param ids
+     * @return
+     */
+    Boolean logicDeleteByIds(List<Long> ids);
+    /**
+     * 根据ID删除（逻辑删除）
+     * @param ids
+     * @return
+     */
+    Boolean deleteByIds(List<Long> ids);
 
-        /**
-         * 根据条件查询
-         * @param ${cfg.cgildPhth}RequestDto
-         * @return
-         */
-        List<${entity}BO> findListByCondition(${entity}RequestDTO ${cfg.cgildPhth}RequestDto);
+    /**
+     * 根据ID查询
+     * @param id
+     * @return
+     */
+    ${entity}BO get${entity}VoById(Long id);
 
-        /**
-         * 分页查询
-         * @param ${cfg.cgildPhth}PageRequestDto
-         * @return
-         */
-        CommonPage pageList(${entity}PageRequestDTO ${cfg.cgildPhth}PageRequestDto);
-        /**
-         * 根据ID集合查询
-         * @param ids
-         * @return
-         */
-        Map<Long,${entity}DO> map${entity}DoByIds(Collection<Long> ids);
+    /**
+     * 根据条件查询
+     * @param ${cfg.cgildPhth}RequestDto
+     * @return
+     */
+    List<${entity}BO> findListByCondition(${entity}RequestDTO ${cfg.cgildPhth}RequestDto);
+
+    /**
+     * 分页查询
+     * @param ${cfg.cgildPhth}PageRequestDto
+     * @return
+     */
+    CommonPage<${entity}BO> pageList(${entity}PageRequestDTO ${cfg.cgildPhth}PageRequestDto);
+    /**
+     * 根据ID集合查询
+     * @param ids
+     * @return
+     */
+    Map<Long,${entity}DO> map${entity}DoByIds(Collection<Long> ids);
+
 }
-

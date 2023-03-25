@@ -38,13 +38,13 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
         ${entity}RequestBO ${table.entityPath}RequestBo = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDto);
         //校验数据
         checkData(${table.entityPath}RequestBo);
-        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(),UserContextHolder.getUser(),Constant.CREATE);
+        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(), UserContextHolder.getUser(), Constant.CREATE);
         return ${table.entityPath}Service.save${entity}(${table.entityPath}RequestBo);
     }
     @Override
     public Boolean saveBatch${entity}(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList) {
         List<${entity}RequestBO> ${table.entityPath}RequestBoList = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDtoList);
-        InitBeanUtil.init(${table.entityPath}RequestBoList, LocalDateTime.now(),UserContextHolder.getUser(),Constant.CREATE);
+        InitBeanUtil.init(${table.entityPath}RequestBoList, LocalDateTime.now(), UserContextHolder.getUser(), Constant.CREATE);
         return ${table.entityPath}Service.saveBatch${entity}(${table.entityPath}RequestBoList);
     }
 
@@ -78,11 +78,9 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
 
     @Override
     public CommonPage<${entity}DTO> pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDTO) {
-        CommonPage commonPage = ${table.entityPath}Service.pageList(${table.entityPath}PageRequestDTO);
-        List<${entity}BO> records = commonPage.getRecords();
-        List<${entity}DTO> ${table.entityPath}DTOS = ${entity}Struct.INSTANCE.boToDto(records);
-        commonPage.setRecords(${table.entityPath}DTOS);
-        return commonPage;
+        CommonPage<${entity}BO> commonPage = ${table.entityPath}Service.pageList(${table.entityPath}PageRequestDTO);
+        List<${entity}DTO> ${table.entityPath}DTOS = ${entity}Struct.INSTANCE.boToDto(commonPage.getRecords());
+        return CommonPage.restPage(commonPage, ${table.entityPath}DTOS);
     }
 
     /**

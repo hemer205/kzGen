@@ -1,8 +1,10 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath}.impl;
 
 import com.baomidou.mybatisplus.${cfg.childModelName}.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.pagehelper.PageHelper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}PageRequestDTO;
 import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}RequestDTO;
 import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo${cfg.sonPath}.${entity}BO;
@@ -14,7 +16,6 @@ import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.ser
 import com.ideal.hos.common.common.CommonPage;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import com.ideal.hos.common.common.SysConstant;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -53,42 +54,39 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
 
     @Override
     public Boolean deleteByIds(List<Long> ids) {
-        return deleteByIds(ids);
+        return super.removeByIds(ids);
     }
 
     @Override
     public Boolean logicDeleteByIds(List<Long> ids) {
-        Collection<${entity}DO> ${table.entityPath}Dos = listByIds(ids);
-        ${table.entityPath}Dos.forEach(${table.entityPath}Do -> ${table.entityPath}Do.setIsDeleted(SysConstant.ENTITY_IS_DELETE_TRUE));
-        return updateBatchById(${table.entityPath}Dos);
+        LambdaUpdateWrapper<${entity}DO> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.in(${entity}DO::getId, ids).set(${entity}DO::getIsDeleted, Boolean.TRUE);
+        return update(wrapper);
     }
 
     @Override
     public ${entity}BO get${entity}VoById(Long id) {
         ${entity}DO ${table.entityPath}Do = getById(id);
-        ${entity}BO ${table.entityPath}Bo = ${entity}Struct.INSTANCE.doToBo(${table.entityPath}Do);
-        return ${table.entityPath}Bo;
+        return ${entity}Struct.INSTANCE.doToBo(${table.entityPath}Do);
     }
 
     @Override
     public List<${entity}BO> findListByCondition(${entity}RequestDTO ${table.entityPath}RequestDto) {
         QueryWrapper<${entity}DO> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(${entity}DO::getIsDeleted, Boolean.FALSE);
         List<${entity}DO> ${table.entityPath}DoList = ${cfg.modelName}Mapper.selectList(queryWrapper);
         if (!CollectionUtils.isEmpty(${table.entityPath}DoList)) {
-            List<${entity}BO> ${table.entityPath}BoList = ${entity}Struct.INSTANCE.doToBo(${table.entityPath}DoList);
-            return ${table.entityPath}BoList;
+            return ${entity}Struct.INSTANCE.doToBo(${table.entityPath}DoList);
         }
         return Collections.emptyList();
     }
 
     @Override
-    public CommonPage pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDto) {
-        PageHelper.startPage(${table.entityPath}PageRequestDto.getPageNum(), ${table.entityPath}PageRequestDto.getPageSize());
-        List<${entity}DO> ${table.entityPath}Dos = ${cfg.modelName}Mapper.pageList(${table.entityPath}PageRequestDto);
-        CommonPage restPage = CommonPage.restPage(${table.entityPath}Dos);
-        List<${entity}BO> ${table.entityPath}BoList  = ${entity}Struct.INSTANCE.doToBo(restPage.getRecords());
-        restPage.setRecords(${table.entityPath}BoList);
-        return restPage;
+    public CommonPage<${entity}BO> pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDto) {
+        IPage<${entity}DO> page = new Page<>(${table.entityPath}PageRequestDto.getPageNum(), ${table.entityPath}PageRequestDto.getPageSize());
+        List<${entity}DO> ${table.entityPath}Dos = ${cfg.modelName}Mapper.pageList(page, ${table.entityPath}PageRequestDto);
+        List<${entity}BO> ${table.entityPath}Bos  = ${entity}Struct.INSTANCE.doToBo(${table.entityPath}Dos);
+        return CommonPage.restPage(page, ${table.entityPath}Bos);
     }
 
     @Override

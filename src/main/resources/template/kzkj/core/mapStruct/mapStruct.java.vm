@@ -23,11 +23,11 @@ public interface ${entity}Struct {
     ${entity}Struct INSTANCE = Mappers.getMapper(${entity}Struct.class);
 
     /**
-  * 类型转换  RequestDTO 转 BO
-  *
-  * @param ${table.entityPath}RequestDtoList
-  * @return
-  */
+     * 类型转换  RequestDTO 转 BO
+     *
+     * @param ${table.entityPath}RequestDtoList
+     * @return
+     */
     List<${entity}RequestBO> requestDtoToBo(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList);
 
     /**

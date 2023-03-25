@@ -53,24 +53,20 @@ public class ${entity}SibServiceImpl implements ${entity}SibService {
     @Override
     public ${entity}VO get${entity}VoById(${entity}Param ${table.entityPath}Param) {
         ${entity}DTO ${table.entityPath}Dto =  ${table.entityPath}ApiService.get${entity}VoById(${table.entityPath}Param.getId());
-        ${entity}VO ${table.entityPath}Vo = ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
-        return ${table.entityPath}Vo;
+        return  ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
     }
 
     @Override
     public List<${entity}VO> findListByCondition(${entity}Param ${table.entityPath}Param) {
         ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
         List<${entity}DTO> ${table.entityPath}DtoList = ${table.entityPath}ApiService.findListByCondition(${table.entityPath}RequestDto);
-        List<${entity}VO> ${table.entityPath}Vos = ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}DtoList);
-        return ${table.entityPath}Vos;
+        return ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}DtoList);
     }
 
     @Override
     public CommonPage<${entity}VO> pageList(${entity}PageParam ${table.entityPath}PageParam) {
         ${entity}PageRequestDTO ${table.entityPath}PageRequestDto = ${entity}Convert.INSTANCE.pageParamToPageRequestDto(${table.entityPath}PageParam);
-        CommonPage result = ${table.entityPath}ApiService.pageList(${table.entityPath}PageRequestDto);
-        List<${entity}DTO> ${table.entityPath}Dtos = result.getRecords();
-        result.setRecords(${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dtos));
-        return result;
+        CommonPage<${entity}DTO> result = ${table.entityPath}ApiService.pageList(${table.entityPath}PageRequestDto);
+        return CommonPage.restPage(result, ${entity}Convert.INSTANCE.dtoToVo(result.getRecords()));
     }
 }

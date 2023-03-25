@@ -18,7 +18,6 @@ import java.util.List;
  */
 public interface ${entity}SibService {
 
-
     /**
      * 保存$!{table.comment}
      *
