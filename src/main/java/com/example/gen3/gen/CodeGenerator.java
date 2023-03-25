@@ -37,19 +37,12 @@ public class CodeGenerator {
     private static final String TABLE_PREFIX = "base_";
 
     public static void main(String[] args) {
-        // 作者
-        String author = "Yi";
         // 表名(逗号隔开)
-        // String tableNameStr = "base_bill_classes，base_bill_sub_classes";
-        String tableNameStr = "base_order_group";
-        // 包名
-        String sonPath = "" ;  // 示例：".workflow"
-        String fileSonPath = "" ; // 示例："workflow/"
-        codeGeneratorSib(author, tableNameStr, MODEL_SIB, MODEL_BASE, sonPath, fileSonPath);
-        codeGenerator(author, tableNameStr, MODEL_BASE, CHILD_MODEL_CORE, sonPath, fileSonPath);
-        codeGenerator(author, tableNameStr, MODEL_BASE, CHILD_MODEL_CLIENT, sonPath, fileSonPath);
-
-
+        String tableNameStr = "base_bill_classes，base_bill_sub_classes";
+        // String tableNameStr = "base_order_group";
+        codeGeneratorSib(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, MODEL_BASE, PrivateFile.SON_PATH, PrivateFile.FILE_SON_PATH);
+        codeGenerator(PrivateFile.AUTHOR, tableNameStr, MODEL_BASE, CHILD_MODEL_CORE, PrivateFile.SON_PATH, PrivateFile.FILE_SON_PATH);
+        codeGenerator(PrivateFile.AUTHOR, tableNameStr, MODEL_BASE, CHILD_MODEL_CLIENT, PrivateFile.SON_PATH, PrivateFile.FILE_SON_PATH);
     }
 
     public static void codeGenerator(String author, String tableNameStr, String modelName, String childModelName, String sonPath, String fileSonPath) {
@@ -63,11 +56,11 @@ public class CodeGenerator {
         // 1. 全局配置
         GlobalConfig globalConfig = new GlobalConfig();
         //生成文件的输出目录
-        globalConfig.setOutputDir(PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName + "/src/main/java");
+        globalConfig.setOutputDir(PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName + "/src/main/java");
         //Author设置作者
         globalConfig.setAuthor(author);
         //是否覆盖文件
-        globalConfig.setFileOverride(false);
+        globalConfig.setFileOverride(PrivateFile.FILE_OVERRIDE);
         //生成后打开文件
         globalConfig.setOpen(false);
         globalConfig.setSwagger2(true);
@@ -140,7 +133,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/resources/mapper/"+CGILD_PHTH + SLASH + fileSonPath
                             + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
                 }
@@ -149,7 +142,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/entity/"
                             + fileSonPath + tableInfo.getEntityName() + "DO" + StringPool.DOT_JAVA;
                 }
@@ -158,7 +151,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/mapper/"
                             + fileSonPath + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
                 }
@@ -167,7 +160,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/service/"
                             + fileSonPath + "I"+ tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
                 }
@@ -175,7 +168,7 @@ public class CodeGenerator {
             focList.add(new FileOutConfig(coreServiceImplJavaTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/service/"
                             + fileSonPath + "impl/"+ tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
                 }
@@ -184,7 +177,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/bo/"
                             + fileSonPath + tableInfo.getEntityName() + "BO" + StringPool.DOT_JAVA;
                 }
@@ -193,7 +186,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/bo/"
                             + fileSonPath + tableInfo.getEntityName() + "RequestBO" + StringPool.DOT_JAVA;
                 }
@@ -201,7 +194,7 @@ public class CodeGenerator {
             focList.add(new FileOutConfig(coreMapStructTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/convert/"
                             + fileSonPath + tableInfo.getEntityName() + "Struct" + StringPool.DOT_JAVA;
                 }
@@ -209,7 +202,7 @@ public class CodeGenerator {
             focList.add(new FileOutConfig(coreClientServiceImplJavaTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/impl/"
                             + fileSonPath + tableInfo.getEntityName() + "ApiServiceImpl" + StringPool.DOT_JAVA;
                 }
@@ -220,7 +213,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + CGILD_PHTH + SLASH + "dto/"
                             + fileSonPath + tableInfo.getEntityName() + "DTO" + StringPool.DOT_JAVA;
                 }
@@ -228,7 +221,7 @@ public class CodeGenerator {
             focList.add(new FileOutConfig(clientRequestDtoTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + CGILD_PHTH + SLASH + "dto/"
                             + fileSonPath + tableInfo.getEntityName() + "RequestDTO" + StringPool.DOT_JAVA;
                 }
@@ -236,7 +229,7 @@ public class CodeGenerator {
             focList.add(new FileOutConfig(clientRequestPageDtoTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + CGILD_PHTH + SLASH + "dto/"
                             + fileSonPath + tableInfo.getEntityName() + "PageRequestDTO" + StringPool.DOT_JAVA;
                 }
@@ -244,7 +237,7 @@ public class CodeGenerator {
             focList.add(new FileOutConfig(clientServiceJavaTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + CGILD_PHTH + SLASH + "service/"
                             + fileSonPath + "I" + tableInfo.getEntityName() + "ApiService" + StringPool.DOT_JAVA;
                 }
@@ -307,7 +300,7 @@ public class CodeGenerator {
         // 1. 全局配置
         GlobalConfig globalConfig = new GlobalConfig();
         //生成文件的输出目录
-        globalConfig.setOutputDir(PROJECT_PATH + SLASH + MODEL_PREFIX + SLASH + MODEL_SIB + "/src/main/java");
+        globalConfig.setOutputDir(PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + SLASH + MODEL_SIB + "/src/main/java");
         //Author设置作者
         globalConfig.setAuthor(author);
         //是否覆盖文件
@@ -394,7 +387,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
                              + "param/" + fileSonPath + tableInfo.getEntityName() + "Param" + StringPool.DOT_JAVA;
                 }
@@ -403,7 +396,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
                             + "param/" + fileSonPath + tableInfo.getEntityName() + "PageParam" + StringPool.DOT_JAVA;
                 }
@@ -412,7 +405,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
                             + "convert/" + fileSonPath + tableInfo.getEntityName() + "Convert" + StringPool.DOT_JAVA;
                 }
@@ -421,7 +414,7 @@ public class CodeGenerator {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
                             + "controller/" + fileSonPath + tableInfo.getEntityName() + "Controller" + StringPool.DOT_JAVA;
                 }
@@ -430,7 +423,7 @@ public class CodeGenerator {
             focList.add(new FileOutConfig(sibServiceJavaTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
                             + "service/" + fileSonPath + tableInfo.getEntityName() + "SibService" + StringPool.DOT_JAVA;
                 }
@@ -439,7 +432,7 @@ public class CodeGenerator {
             focList.add(new FileOutConfig(sibServiceImplJavaTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
                             + "service/" + fileSonPath + "impl/" + tableInfo.getEntityName() + "SibServiceImpl" + StringPool.DOT_JAVA;
                 }
@@ -448,7 +441,7 @@ public class CodeGenerator {
             focList.add(new FileOutConfig(sibVoJavaTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
-                    return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
                             + "vo/" + fileSonPath + tableInfo.getEntityName() + "VO" + StringPool.DOT_JAVA;
                 }

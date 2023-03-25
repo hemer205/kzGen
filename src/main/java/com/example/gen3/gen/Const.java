@@ -1,15 +1,8 @@
 package com.example.gen3.gen;
 
 public interface Const {
-    // 作者
-    String AUTHOR = "Yi";
     String SLASH = "/";
     String DROP = ".";
-    /*************/
-    /**
-     * 项目路径
-     */
-    String PROJECT_PATH = "D:\\work\\code\\ideal-hos-server";
 
     /**
      * 模块前缀
@@ -32,9 +25,6 @@ public interface Const {
     String MODEL_PHARMACY = "pharmacy";
     String MODEL_REPORT = "report";
     String MODEL_SIB = "sib";
-    /**
-     * 模块列表 ************************************
-     */
 
     /**
      * 子模块列表 ************************************
