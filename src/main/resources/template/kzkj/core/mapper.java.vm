@@ -1,6 +1,7 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.mapper${cfg.sonPath};
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}PageRequestDTO;
 import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO;
 
@@ -16,10 +17,10 @@ import java.util.List;
 
 public interface ${table.mapperName} extends ${superMapperClass}<${entity}DO> {
 
-        /**
-         * 分页查询
-         * @param ${table.entityPath}PageRequestDto
-         * @return
-         */
-        List<${entity}DO> pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
+    /**
+     * 分页查询
+     * @param ${table.entityPath}PageRequestDto
+     * @return
+     */
+    List<${entity}DO> pageList(IPage<${entity}DO> page, ${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
 }
