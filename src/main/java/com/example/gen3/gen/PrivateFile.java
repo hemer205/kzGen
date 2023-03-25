@@ -1,5 +1,6 @@
 package com.example.gen3.gen;
 
+import cn.hutool.core.util.StrUtil;
 import org.springframework.util.StringUtils;
 import static com.example.gen3.gen.Const.*;
 
@@ -31,10 +32,7 @@ public interface PrivateFile {
      */
     String CGILD_PHTH = "basic";
 
-    /**
-     *
-     */
-    String NAME = "";
+    Boolean HAVE = true;
 
     /**
      * 是否覆盖
@@ -45,27 +43,30 @@ public interface PrivateFile {
     /**
      * 项目路径
      */
-    String PROJECT_PATH = "D:\\work\\code\\ideal-hos-server";
+    String PROJECT_PATH = "D:\\work\\code\\ideal-hos-server333";
 
 
     String AUTHOR = "Yi";
 
-    /**
-     * 包名 示例：".workflow"
-     */
-    String SON_PATH = StringUtils.hasLength(NAME) ? Const.DROP + NAME : "";
 
-    /**
-     * 示例："workflow/"
-     */
-    String FILE_SON_PATH = StringUtils.hasLength(NAME) ? NAME + Const.SLASH : "";
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         // 表名(仅支持一张表)
         String tableNameStr = PrivateFile.TABLE_NAME_STR;
-        // String tableNameStr = "base_order_group";
-        CodeGenerator.codeGeneratorSib(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, PrivateFile.MODEL_BASE, PrivateFile.SON_PATH, PrivateFile.FILE_SON_PATH);
-        CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CORE, PrivateFile.SON_PATH, PrivateFile.FILE_SON_PATH);
-        CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CLIENT, PrivateFile.SON_PATH, PrivateFile.FILE_SON_PATH);
+        String[] split = tableNameStr.split(",|，");
+        String name = "";
+        for (String tableName : split) {
+            if(HAVE){
+                name = StrUtil.toCamelCase(tableName.replace(TABLE_PREFIX, ""));
+            }
+            //包名 示例：".workflow"
+            String sonPath = StringUtils.hasLength(name) ? Const.DROP + name : "";
+            //示例："workflow/"
+            String fileSonPath = StringUtils.hasLength(name) ? name + Const.SLASH : "";
+            CodeGenerator.codeGeneratorSib(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, PrivateFile.MODEL_BASE, sonPath, fileSonPath);
+            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CORE, sonPath, fileSonPath);
+            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CLIENT, sonPath, fileSonPath);
+        }
     }
+
 }
