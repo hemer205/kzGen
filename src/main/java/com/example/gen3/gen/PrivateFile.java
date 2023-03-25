@@ -32,7 +32,7 @@ public interface PrivateFile {
      */
     String CGILD_PHTH = "basic";
 
-    Boolean HAVE = true;
+    Boolean HAVE = false;
 
     /**
      * 是否覆盖
