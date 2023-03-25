@@ -1,4 +1,4 @@
-package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo.${table.entityPath};
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo${cfg.sonPath};
 
 
 #foreach($pkg in ${table.importPackages})
@@ -136,7 +136,7 @@ public class ${entity}VO implements Serializable {
      */
     @ApiModelProperty(value = "创建人名")
     private String createUserName;
-    
+
     /**
      * 修改人名
      */

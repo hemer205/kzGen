@@ -33,22 +33,25 @@ public class CodeGenerator {
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "zxcd!@mysql3306.1";
-    private static final String CGILD_PHTH = "sys";
+    private static final String CGILD_PHTH = "basic";
     private static final String TABLE_PREFIX = "base_";
 
     public static void main(String[] args) {
         // 作者
         String author = "Yi";
         // 表名(逗号隔开)
-        String tableNameStr = "base_work_assembly";
-        codeGeneratorSib(author, tableNameStr, MODEL_SIB, MODEL_BASE);
-        codeGenerator(author, tableNameStr, MODEL_BASE, CHILD_MODEL_CORE);
-        codeGenerator(author, tableNameStr, MODEL_BASE, CHILD_MODEL_CLIENT);
+        String tableNameStr = "base_order_group";
+        // 包名
+        String sonPath = "" ;  // 示例：".workflow"
+        String fileSonPath = "" ; // 示例："workflow/"
+        codeGeneratorSib(author, tableNameStr, MODEL_SIB, MODEL_BASE, sonPath, fileSonPath);
+        codeGenerator(author, tableNameStr, MODEL_BASE, CHILD_MODEL_CORE, sonPath, fileSonPath);
+        codeGenerator(author, tableNameStr, MODEL_BASE, CHILD_MODEL_CLIENT, sonPath, fileSonPath);
 
 
     }
 
-    public static void codeGenerator(String author, String tableNameStr, String modelName, String childModelName) {
+    public static void codeGenerator(String author, String tableNameStr, String modelName, String childModelName, String sonPath, String fileSonPath) {
         if (StringUtils.isEmpty(tableNameStr)) {
             return;
         }
@@ -108,6 +111,8 @@ public class CodeGenerator {
                 map.put("coreEntity", RandomUtils.nextLong());
                 map.put("coreEntityBO", RandomUtils.nextLong());
                 map.put("coreRequestBO", RandomUtils.nextLong());
+
+                map.put("sonPath", sonPath);
                 this.setMap(map);
             }
         };
@@ -135,7 +140,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-                            + "/src/main/resources/mapper/"+CGILD_PHTH + SLASH + tableInfo.getEntityPath() +SLASH+ pc.getModuleName()
+                            + "/src/main/resources/mapper/"+CGILD_PHTH + SLASH + fileSonPath
                             + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
                 }
             });
@@ -145,8 +150,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/entity/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/" + tableInfo.getEntityName() + "DO" + StringPool.DOT_JAVA;
+                            + fileSonPath + tableInfo.getEntityName() + "DO" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(coreMapperJavaTemplatePath) {
@@ -155,8 +159,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/mapper/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
+                            + fileSonPath + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(coreServiceJavaTemplatePath) {
@@ -165,8 +168,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/service/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/I"+ tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
+                            + fileSonPath + "I"+ tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(coreServiceImplJavaTemplatePath) {
@@ -174,8 +176,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/service/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/impl/"+ tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
+                            + fileSonPath + "impl/"+ tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(coreModelBoTemplatePath) {
@@ -184,8 +185,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/bo/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/" + tableInfo.getEntityName() + "BO" + StringPool.DOT_JAVA;
+                            + fileSonPath + tableInfo.getEntityName() + "BO" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(coreModelRequestBoTemplatePath) {
@@ -194,8 +194,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/bo/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/" + tableInfo.getEntityName() + "RequestBO" + StringPool.DOT_JAVA;
+                            + fileSonPath + tableInfo.getEntityName() + "RequestBO" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(coreMapStructTemplatePath) {
@@ -203,8 +202,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/convert/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/" + tableInfo.getEntityName() + "Struct" + StringPool.DOT_JAVA;
+                            + fileSonPath + tableInfo.getEntityName() + "Struct" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(coreClientServiceImplJavaTemplatePath) {
@@ -212,8 +210,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + CGILD_PHTH + SLASH + "/impl/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/" + tableInfo.getEntityName() + "ApiServiceImpl" + StringPool.DOT_JAVA;
+                            + fileSonPath + tableInfo.getEntityName() + "ApiServiceImpl" + StringPool.DOT_JAVA;
                 }
             });
         }
@@ -224,8 +221,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + CGILD_PHTH + SLASH + "dto/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/" + tableInfo.getEntityName() + "DTO" + StringPool.DOT_JAVA;
+                            + fileSonPath + tableInfo.getEntityName() + "DTO" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(clientRequestDtoTemplatePath) {
@@ -233,8 +229,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + CGILD_PHTH + SLASH + "dto/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/" + tableInfo.getEntityName() + "RequestDTO" + StringPool.DOT_JAVA;
+                            + fileSonPath + tableInfo.getEntityName() + "RequestDTO" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(clientRequestPageDtoTemplatePath) {
@@ -242,8 +237,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + CGILD_PHTH + SLASH + "dto/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/" + tableInfo.getEntityName() + "PageRequestDTO" + StringPool.DOT_JAVA;
+                            + fileSonPath + tableInfo.getEntityName() + "PageRequestDTO" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(clientServiceJavaTemplatePath) {
@@ -251,8 +245,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + CGILD_PHTH + SLASH + "service/"
-                            + tableInfo.getEntityPath() + pc.getModuleName()
-                            + "/I" + tableInfo.getEntityName() + "ApiService" + StringPool.DOT_JAVA;
+                            + fileSonPath + "I" + tableInfo.getEntityName() + "ApiService" + StringPool.DOT_JAVA;
                 }
             });
         }
@@ -302,7 +295,7 @@ public class CodeGenerator {
         mpg.execute();
     }
 
-    public static void codeGeneratorSib(String author, String tableNameStr, String modelName, String modelNameTwo) {
+    public static void codeGeneratorSib(String author, String tableNameStr, String modelName, String modelNameTwo, String sonPath, String fileSonPath) {
         if (StringUtils.isEmpty(tableNameStr)) {
             return;
         }
@@ -358,6 +351,8 @@ public class CodeGenerator {
                 map.put("param", RandomUtils.nextLong());
                 map.put("paramPage", RandomUtils.nextLong());
                 map.put("vo", RandomUtils.nextLong());
+
+                map.put("sonPath", sonPath);
                 this.setMap(map);
             }
         };
@@ -400,8 +395,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                             + "param/" + tableInfo.getEntityPath() + SLASH
-                            + tableInfo.getEntityName() + "Param" + StringPool.DOT_JAVA;
+                             + "param/" + fileSonPath + tableInfo.getEntityName() + "Param" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(paramPageTemplatePath) {
@@ -410,8 +404,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                            + "param/" + tableInfo.getEntityPath() + SLASH
-                            + tableInfo.getEntityName() + "PageParam" + StringPool.DOT_JAVA;
+                            + "param/" + fileSonPath + tableInfo.getEntityName() + "PageParam" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(mapStructJavaTemplatePath) {
@@ -420,8 +413,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                            + "convert/" + tableInfo.getEntityPath() + SLASH
-                            + tableInfo.getEntityName() + "Convert" + StringPool.DOT_JAVA;
+                            + "convert/" + fileSonPath + tableInfo.getEntityName() + "Convert" + StringPool.DOT_JAVA;
                 }
             });
             focList.add(new FileOutConfig(sibControllerJavaTemplatePath) {
@@ -430,8 +422,7 @@ public class CodeGenerator {
                     // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                            + "controller/" + tableInfo.getEntityPath() + SLASH
-                            + tableInfo.getEntityName() + "Controller" + StringPool.DOT_JAVA;
+                            + "controller/" + fileSonPath + tableInfo.getEntityName() + "Controller" + StringPool.DOT_JAVA;
                 }
             });
 
@@ -440,8 +431,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                            + "service/" + tableInfo.getEntityPath() + SLASH
-                            + tableInfo.getEntityName() + "SibService" + StringPool.DOT_JAVA;
+                            + "service/" + fileSonPath + tableInfo.getEntityName() + "SibService" + StringPool.DOT_JAVA;
                 }
             });
 
@@ -450,7 +440,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                            + "service/" + tableInfo.getEntityPath() + "/impl/" +SLASH
+                            + "service/" + (StringUtils.hasLength(fileSonPath) ? (fileSonPath + "/impl/" +SLASH) : fileSonPath)
                             + tableInfo.getEntityName() + "SibServiceImpl" + StringPool.DOT_JAVA;
                 }
             });
@@ -460,8 +450,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                            + "vo/" + tableInfo.getEntityPath() + SLASH
-                            + tableInfo.getEntityName() + "VO" + StringPool.DOT_JAVA;
+                            + "vo/" + fileSonPath + tableInfo.getEntityName() + "VO" + StringPool.DOT_JAVA;
                 }
             });
         }

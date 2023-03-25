@@ -1,4 +1,4 @@
-package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo.${table.entityPath};
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo${cfg.sonPath};
 
 #foreach($pkg in ${table.importPackages})
 import ${pkg};

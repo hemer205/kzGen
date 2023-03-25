@@ -1,15 +1,15 @@
-package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath}.impl;
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath}.impl;
 
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}DTO;
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}PageRequestDTO;
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}RequestDTO;
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.service.${table.entityPath}.I${entity}ApiService;
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}DTO;
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}PageRequestDTO;
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}RequestDTO;
+import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.service${cfg.sonPath}.I${entity}ApiService;
 import com.ideal.hos.common.common.CommonPage;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert.${table.entityPath}.${entity}Convert;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}PageParam;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param.${table.entityPath}.${entity}Param;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath}.${entity}SibService;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo.${table.entityPath}.${entity}VO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert${cfg.sonPath}.${entity}Convert;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}PageParam;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}Param;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath}.${entity}SibService;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo${cfg.sonPath}.${entity}VO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
