@@ -34,11 +34,6 @@ public class CodeGenerator {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "zxcd!@mysql3306.1";
 
-
-    public static void main(String[] args) {
-
-    }
-
     public static void codeGenerator(String author, String tableNameStr, String modelName, String childModelName, String sonPath, String fileSonPath) {
         if (StringUtils.isEmpty(tableNameStr)) {
             return;
