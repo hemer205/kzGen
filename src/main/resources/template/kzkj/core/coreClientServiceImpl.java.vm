@@ -1,13 +1,13 @@
-package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.impl.${table.entityPath};
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.impl${cfg.sonPath};
 
-import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}DTO;
-import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}PageRequestDTO;
-import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto.${table.entityPath}.${entity}RequestDTO;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo.${table.entityPath}.${entity}BO;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo.${table.entityPath}.${entity}RequestBO;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert.${table.entityPath}.${entity}Struct;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service.${table.entityPath}.I${entity}Service;
-import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.service.${table.entityPath}.I${entity}ApiService;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}DTO;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}PageRequestDTO;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}RequestDTO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo${cfg.sonPath}.${entity}BO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.bo${cfg.sonPath}.${entity}RequestBO;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert${cfg.sonPath}.${entity}Struct;
+import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath}.I${entity}Service;
+import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.service${cfg.sonPath}.I${entity}ApiService;
 import com.ideal.hos.common.holder.UserContextHolder;
 import com.ideal.hos.common.common.CommonPage;
 import org.springframework.stereotype.Service;
