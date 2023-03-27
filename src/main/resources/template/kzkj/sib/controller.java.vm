@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotEmpty;
 import javax.annotation.Resource;
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -31,7 +30,6 @@ import java.util.List;
 @RestController
 @Api(tags = "$!{table.comment}")
 @RequestMapping("/${table.entityPath}")
-@Validated
 public class ${table.controllerName} {
 
     @Resource
@@ -44,7 +42,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "批量保存")
     @PostMapping("/saveBatch")
-    public CommonResult<Boolean> save(@RequestBody @Valid List<${entity}Param> ${table.entityPath}ParamList) {
+    public CommonResult<Boolean> save(@RequestBody @Validated List<${entity}Param> ${table.entityPath}ParamList) {
         return CommonResult.success(${table.entityPath}SibService.saveBatch${entity}(${table.entityPath}ParamList));
     }
     /**
@@ -55,7 +53,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "保存")
     @PostMapping("/save")
-    public CommonResult<Boolean> save(@RequestBody @Valid ${entity}Param ${table.entityPath}Param) {
+    public CommonResult<Boolean> save(@RequestBody @Validated ${entity}Param ${table.entityPath}Param) {
         return CommonResult.success(${table.entityPath}SibService.save${entity}(${table.entityPath}Param));
     }
 
@@ -67,7 +65,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "根据ID修改")
     @PostMapping("/updateById")
-    public CommonResult<Boolean> update${entity}ById(@RequestBody @Valid ${entity}Param ${table.entityPath}Param) {
+    public CommonResult<Boolean> update${entity}ById(@RequestBody @Validated ${entity}Param ${table.entityPath}Param) {
         return CommonResult.success(${table.entityPath}SibService.update${entity}ById(${table.entityPath}Param));
     }
 
