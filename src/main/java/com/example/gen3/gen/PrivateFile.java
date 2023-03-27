@@ -15,7 +15,7 @@ public interface PrivateFile {
     /**
      * 表名
      */
-    String TABLE_NAME_STR = "base_bill_sub_classes";
+    String TABLE_NAME_STR = "base_order_item";
 
     /**
      * 表前缀
@@ -43,7 +43,7 @@ public interface PrivateFile {
     /**
      * 项目路径
      */
-    String PROJECT_PATH = "D:\\work\\code\\ideal-hos-server333";
+    String PROJECT_PATH = "D:\\work\\code\\ideal-hos-server";
 
 
     String AUTHOR = "Yi";
