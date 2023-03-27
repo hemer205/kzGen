@@ -44,6 +44,10 @@ public class ${entity}Param implements Serializable {
 #if(${entitySerialVersionUID})
     private static final long serialVersionUID = ${cfg.param}L;
 #end
+
+    public interface Add{}
+    public interface Update{}
+
 ## ----------  BEGIN 字段循环遍历  ----------
 #foreach($field in ${table.fields})
 
@@ -144,6 +148,5 @@ public class ${entity}Param implements Serializable {
         "}";
     }
 #end
-    public interface Add{}
-    public interface Update{}
+
 }
