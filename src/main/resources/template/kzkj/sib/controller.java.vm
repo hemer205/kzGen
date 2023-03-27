@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ideal.hos.common.validator.group;.AddGroup;
-import com.ideal.hos.common.validator.group;.UpdateGroup;
+import com.ideal.hos.common.validator.group.AddGroup;
+import com.ideal.hos.common.validator.group.UpdateGroup;
 
 import javax.validation.constraints.NotEmpty;
 import javax.annotation.Resource;
@@ -44,7 +44,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "批量保存")
     @PostMapping("/saveBatch")
-    public CommonResult<Boolean> save(@RequestBody @Validated({AddGroup.class}) List<${entity}Param> ${table.entityPath}ParamList) {
+    public CommonResult<Boolean> save(@RequestBody @Validated(AddGroup.class) List<${entity}Param> ${table.entityPath}ParamList) {
         return CommonResult.success(${table.entityPath}SibService.saveBatch${entity}(${table.entityPath}ParamList));
     }
     /**
@@ -55,7 +55,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "保存")
     @PostMapping("/save")
-    public CommonResult<Boolean> save(@RequestBody @Validated({AddGroup.Add.class}) ${entity}Param ${table.entityPath}Param) {
+    public CommonResult<Boolean> save(@RequestBody @Validated(AddGroup.class) ${entity}Param ${table.entityPath}Param) {
         return CommonResult.success(${table.entityPath}SibService.save${entity}(${table.entityPath}Param));
     }
 
@@ -67,7 +67,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "根据ID修改")
     @PostMapping("/updateById")
-    public CommonResult<Boolean> update${entity}ById(@RequestBody @Validated(UpdateGroup.class}) ${entity}Param ${table.entityPath}Param) {
+    public CommonResult<Boolean> update${entity}ById(@RequestBody @Validated(UpdateGroup.class) ${entity}Param ${table.entityPath}Param) {
         return CommonResult.success(${table.entityPath}SibService.update${entity}ById(${table.entityPath}Param));
     }
 
