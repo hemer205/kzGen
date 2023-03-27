@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}PageRequestDTO;
 import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO;
-
+import org.apache.ibatis.annotations.Param;
 import java.util.List;
 /**
  * <p>
@@ -22,5 +22,5 @@ public interface ${table.mapperName} extends ${superMapperClass}<${entity}DO> {
      * @param ${table.entityPath}PageRequestDto
      * @return
      */
-    List<${entity}DO> pageList(IPage<${entity}DO> page, ${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
+    List<${entity}DO> pageList(@Param("page")IPage<${entity}DO> page, @Param("${table.entityPath}PageRequestDto")${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
 }
