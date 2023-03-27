@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.ideal.hos.common.utils.InitBeanUtil;
 import com.ideal.hos.common.utils.Constant;
 import java.time.LocalDateTime;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -34,6 +35,7 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
     private I${entity}Service ${table.entityPath}Service;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean save${entity}(${entity}RequestDTO ${table.entityPath}RequestDto) {
         ${entity}RequestBO ${table.entityPath}RequestBo = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDto);
         //校验数据
@@ -42,6 +44,7 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
         return ${table.entityPath}Service.save${entity}(${table.entityPath}RequestBo);
     }
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean saveBatch${entity}(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList) {
         List<${entity}RequestBO> ${table.entityPath}RequestBoList = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDtoList);
         InitBeanUtil.init(${table.entityPath}RequestBoList, LocalDateTime.now(), UserContextHolder.getUser(), Constant.CREATE);
@@ -49,6 +52,7 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean update${entity}ById(${entity}RequestDTO ${table.entityPath}RequestDto) {
         ${entity}RequestBO ${table.entityPath}RequestBo = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDto);
         //校验数据
@@ -58,6 +62,7 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean deleteByIds(List<Long> ids) {
         return ${table.entityPath}Service.logicDeleteByIds(ids);
     }
