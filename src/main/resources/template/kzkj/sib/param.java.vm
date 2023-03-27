@@ -144,4 +144,6 @@ public class ${entity}Param implements Serializable {
         "}";
     }
 #end
+    public interface Add{}
+    public interface Update{}
 }

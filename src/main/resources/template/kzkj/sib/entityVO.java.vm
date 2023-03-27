@@ -135,11 +135,11 @@ public class ${entity}VO implements Serializable {
      * 创建人名
      */
     @ApiModelProperty(value = "创建人名")
-    private String createUserName;
+    private String createByName;
 
     /**
      * 修改人名
      */
     @ApiModelProperty(value = "修改人名")
-    private String modifyUserName;
+    private String updateByName;
 }
