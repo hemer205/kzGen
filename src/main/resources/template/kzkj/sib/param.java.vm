@@ -1,9 +1,5 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath};
 
-
-#foreach($pkg in ${table.importPackages})
-import ${pkg};
-#end
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
