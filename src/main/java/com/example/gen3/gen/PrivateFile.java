@@ -15,7 +15,7 @@ public interface PrivateFile {
     /**
      * 表名
      */
-    String TABLE_NAME_STR = "base_order_item";
+    String TABLE_NAME_STR = "base_order_classes";
 
     /**
      * 表前缀
