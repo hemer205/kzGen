@@ -113,7 +113,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "根据条件分页查询")
     @PostMapping("/pageList")
-    public CommonResult<CommonPage<${entity}VO>> pageList(@RequestBody ${entity}PageParam ${table.entityPath}PageParam) {
+    public CommonResult<CommonPage<${entity}VO>> pageList(@RequestBody @Validated ${entity}PageParam ${table.entityPath}PageParam) {
         CommonPage<${entity}VO> pageVOList = ${table.entityPath}SibService.pageList(${table.entityPath}PageParam);
         return CommonResult.success(pageVOList);
     }
