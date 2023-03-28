@@ -26,13 +26,13 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}DO> 
       * @param ${cfg.cgildPhth}RequestBo
       * @return
       */
-    Boolean save${entity}(${entity}RequestBO ${cfg.cgildPhth}RequestBo);
+    ${entity}BO save${entity}(${entity}RequestBO ${cfg.cgildPhth}RequestBo);
     /**
       * 保存$!{table.comment}
       * @param ${cfg.cgildPhth}RequestBoList
       * @return
       */
-    Boolean saveBatch${entity}(List<${entity}RequestBO> ${cfg.cgildPhth}RequestBoList);
+    List<${entity}BO> saveBatch${entity}(List<${entity}RequestBO> ${cfg.cgildPhth}RequestBoList);
 
     /**
      * 修改$!{table.comment}

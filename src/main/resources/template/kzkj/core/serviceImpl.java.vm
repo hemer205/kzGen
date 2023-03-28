@@ -17,6 +17,7 @@ import com.ideal.hos.common.holder.UserContextHolder;
 import com.ideal.hos.common.common.CommonPage;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -38,14 +39,16 @@ import java.util.stream.Collectors;
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}DO> implements ${table.serviceName} {
 
     @Override
-    public Boolean save${entity}(${entity}RequestBO ${table.entityPath}RequestBo) {
+    public ${entity}BO save${entity}(${entity}RequestBO ${table.entityPath}RequestBo) {
         ${entity}DO ${table.entityPath}Do = ${entity}Struct.INSTANCE.boToDo(${table.entityPath}RequestBo);
-        return save(${table.entityPath}Do);
+        Assert.isTrue(save(${table.entityPath}Do),"新增失败！");
+        return ${entity}Struct.INSTANCE.doToBo(${table.entityPath}Do);
     }
     @Override
-    public Boolean saveBatch${entity}(List<${entity}RequestBO> ${table.entityPath}RequestBoList) {
+    public List<${entity}BO> saveBatch${entity}(List<${entity}RequestBO> ${table.entityPath}RequestBoList) {
         List<${entity}DO> ${table.entityPath}DoList = ${entity}Struct.INSTANCE.boToDo(${table.entityPath}RequestBoList);
-        return saveBatch(${table.entityPath}DoList);
+        Assert.isTrue(saveBatch(${table.entityPath}DoList),"新增失败！");
+        return ${entity}Struct.INSTANCE.doToBo(${table.entityPath}DoList);
     }
 
     @Override

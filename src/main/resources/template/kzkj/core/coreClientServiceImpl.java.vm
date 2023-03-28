@@ -36,19 +36,23 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean save${entity}(${entity}RequestDTO ${table.entityPath}RequestDto) {
+    public ${entity}DTO save${entity}(${entity}RequestDTO ${table.entityPath}RequestDto) {
         ${entity}RequestBO ${table.entityPath}RequestBo = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDto);
         //校验数据
         checkData(${table.entityPath}RequestBo);
-        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(), UserContextHolder.getUser(), Constant.CREATE);
-        return ${table.entityPath}Service.save${entity}(${table.entityPath}RequestBo);
+        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(),UserContextHolder.getUser(),Constant.CREATE);
+        ${entity}BO ${table.entityPath}Bo = ${table.entityPath}Service.save${entity}(${table.entityPath}RequestBo);
+        ${entity}DTO ${table.entityPath}Dto = ${entity}Struct.INSTANCE.boToDto(${table.entityPath}Bo);
+        return ${table.entityPath}Dto;
     }
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Boolean saveBatch${entity}(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList) {
+    public List<${entity}DTO> saveBatch${entity}(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList) {
         List<${entity}RequestBO> ${table.entityPath}RequestBoList = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDtoList);
-        InitBeanUtil.init(${table.entityPath}RequestBoList, LocalDateTime.now(), UserContextHolder.getUser(), Constant.CREATE);
-        return ${table.entityPath}Service.saveBatch${entity}(${table.entityPath}RequestBoList);
+        InitBeanUtil.init(${table.entityPath}RequestBoList, LocalDateTime.now(),UserContextHolder.getUser(),Constant.CREATE);
+        List<${entity}BO> ${table.entityPath}Bos = ${table.entityPath}Service.saveBatch${entity}(${table.entityPath}RequestBoList);
+        List<${entity}DTO> ${table.entityPath}DtoList = ${entity}Struct.INSTANCE.boToDto(${table.entityPath}Bos);
+        return ${table.entityPath}DtoList;
     }
 
     @Override

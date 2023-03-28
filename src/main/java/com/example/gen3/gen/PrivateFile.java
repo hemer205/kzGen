@@ -37,7 +37,7 @@ public interface PrivateFile {
     /**
      * 是否覆盖
      */
-    Boolean FILE_OVERRIDE = Boolean.FALSE;
+    Boolean FILE_OVERRIDE = Boolean.TRUE;
 
 
     /**
