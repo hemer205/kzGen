@@ -52,7 +52,7 @@ public interface ${entity}Struct {
      * @param ${table.entityPath}RequestBo
      * @return
      */
-    ${entity}DO boToDo(${entity}RequestBO ${table.entityPath}RequestB0);
+    ${entity}DO boToDo(${entity}RequestBO ${table.entityPath}RequestBo);
 
     /**
      * 类型转换
