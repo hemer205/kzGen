@@ -23,13 +23,13 @@ public interface I${entity}ApiService {
      * @param ${table.entityPath}RequestDto
      * @return
      */
-    Boolean save${entity}(${entity}RequestDTO ${table.entityPath}RequestDto);
+    ${entity}DTO save${entity}(${entity}RequestDTO ${table.entityPath}RequestDto);
     /**
      * 保存$!{table.comment}
      * @param ${table.entityPath}RequestDtoList
      * @return
      */
-    Boolean saveBatch${entity}(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList);
+    List<${entity}DTO> saveBatch${entity}(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList);
 
     /**
      * 修改$!{table.comment}

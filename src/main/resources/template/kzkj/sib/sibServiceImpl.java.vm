@@ -31,12 +31,14 @@ public class ${entity}SibServiceImpl implements ${entity}SibService {
     @Override
     public Boolean save${entity}(${entity}Param ${table.entityPath}Param) {
         ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
-        return ${table.entityPath}ApiService.save${entity}(${table.entityPath}RequestDto);
+        ${table.entityPath}ApiService.save${entity}(${table.entityPath}RequestDto);
+        return Boolean.TRUE;
     }
     @Override
     public Boolean saveBatch${entity}(List<${entity}Param> ${table.entityPath}ParamList) {
         List<${entity}RequestDTO> ${table.entityPath}RequestDtoList = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}ParamList);
-        return ${table.entityPath}ApiService.saveBatch${entity}(${table.entityPath}RequestDtoList);
+        ${table.entityPath}ApiService.saveBatch${entity}(${table.entityPath}RequestDtoList);
+        return Boolean.TRUE;
     }
 
     @Override
