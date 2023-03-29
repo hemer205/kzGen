@@ -293,7 +293,7 @@ public class CodeGenerator {
         //Author设置作者
         globalConfig.setAuthor(author);
         //是否覆盖文件
-        globalConfig.setFileOverride(true);
+        globalConfig.setFileOverride(PrivateFile.FILE_OVERRIDE);
         //生成后打开文件
         globalConfig.setOpen(false);
         globalConfig.setSwagger2(true);
