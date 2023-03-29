@@ -51,4 +51,9 @@ public class ${entity}PageRequestDTO implements Serializable {
      */
     @Description(value = "每页显示条数")
     private Integer pageSize;
+    /**
+     * 关键字
+     */
+    @ApiModelProperty(value = "关键字")
+    private String keyword;
 }
