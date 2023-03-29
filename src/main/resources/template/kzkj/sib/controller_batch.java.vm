@@ -37,6 +37,17 @@ public class ${table.controllerName} {
     @Resource
     private ${entity}SibService ${table.entityPath}SibService;
     /**
+     * 批量保存$!{table.comment}
+     *
+     * @param ${table.entityPath}ParamList 对象
+     * @return Boolean
+     */
+    @ApiOperation(value = "批量保存")
+    @PostMapping("/saveBatch")
+    public CommonResult<Boolean> save(@RequestBody @Validated(AddGroup.class) List<${entity}Param> ${table.entityPath}ParamList) {
+        return CommonResult.success(${table.entityPath}SibService.saveBatch${entity}(${table.entityPath}ParamList));
+    }
+    /**
      * 保存$!{table.comment}
      *
      * @param ${table.entityPath}Param 对象
