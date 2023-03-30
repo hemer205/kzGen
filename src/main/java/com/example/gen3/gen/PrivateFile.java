@@ -63,9 +63,9 @@ public interface PrivateFile {
             String sonPath = StringUtils.hasLength(name) ? Const.DROP + name : "";
             //示例："workflow/"
             String fileSonPath = StringUtils.hasLength(name) ? name + Const.SLASH : "";
-            CodeGenerator.codeGeneratorSib(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, PrivateFile.MODEL_BASE, sonPath, fileSonPath);
+//            CodeGenerator.codeGeneratorSib(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, PrivateFile.MODEL_BASE, sonPath, fileSonPath);
             CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CORE, sonPath, fileSonPath);
-            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CLIENT, sonPath, fileSonPath);
+//            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CLIENT, sonPath, fileSonPath);
         }
     }
 
