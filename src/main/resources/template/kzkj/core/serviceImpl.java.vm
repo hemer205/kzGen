@@ -17,6 +17,7 @@ import com.ideal.hos.common.holder.UserContextHolder;
 import com.ideal.hos.common.common.CommonPage;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import com.ideal.hos.common.utils.Constant;
 import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
@@ -54,7 +55,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     @Override
     public Boolean update${entity}ById(${entity}RequestBO ${table.entityPath}RequestBo) {
         ${entity}DO ${table.entityPath}Do = ${entity}Struct.INSTANCE.boToDo(${table.entityPath}RequestBo);
-        return updateById(${table.entityPath}Do);
+        return baseMapper.update${entity}ById(${table.entityPath}Do) > Constant.ZERO;
     }
 
     @Override

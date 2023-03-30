@@ -23,4 +23,10 @@ public interface ${table.mapperName} extends ${superMapperClass}<${entity}DO> {
      * @return
      */
     List<${entity}DO> pageList(@Param("page")IPage<${entity}DO> page, @Param("${table.entityPath}PageRequestDto")${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
+    /**
+     * 根据ID进行修改
+     * @param ${table.entityPath}Do
+     * @return
+     */
+     int update${entity}ById(@Param("${table.entityPath}Do") ${entity}DO ${table.entityPath}Do);
 }

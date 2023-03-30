@@ -36,4 +36,21 @@
         from ${table.name}
         where is_deleted  =  0
     </select>
+    <update id="update${entity}ById" parameterType="com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO">
+        update ${table.name}
+        <set>
+            #foreach($field in ${table.fields})
+            #if(!${field.keyFlag})
+            <if test="${table.entityPath}Do.${field.propertyName} != null">
+                ${field.name} = #{${table.entityPath}Do.${field.propertyName}},
+            </if>
+            #end
+            #end
+        </set>
+        #foreach($field in ${table.fields})
+        #if(${field.keyFlag})
+            where ${field.name} = #{${table.entityPath}Do.${field.propertyName}}
+        #end
+        #end
+    </update>
 </mapper>
