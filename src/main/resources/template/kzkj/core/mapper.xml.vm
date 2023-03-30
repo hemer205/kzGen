@@ -31,7 +31,7 @@
     </sql>
 
 #end
-    <select id="pageList" resultType="com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO" parameterType="com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}PageRequestDTO">
+    <select id="pageList" resultType="com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO">
         select <include refid="Base_Column_List"/>
         from ${table.name}
         where is_deleted  =  0
