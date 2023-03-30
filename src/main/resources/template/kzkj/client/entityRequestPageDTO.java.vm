@@ -52,8 +52,13 @@ public class ${entity}PageRequestDTO implements Serializable {
     @Description(value = "每页显示条数")
     private Integer pageSize;
     /**
+     * 机构ID
+     */
+    @Description(value = "机构ID")
+    private Long orgId;
+    /**
      * 关键字
      */
-    @ApiModelProperty(value = "关键字")
+    @Description(value = "关键字")
     private String keyword;
 }
