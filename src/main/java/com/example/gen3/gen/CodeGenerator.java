@@ -127,15 +127,15 @@ public class CodeGenerator {
                             + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
                 }
             });
-//            focList.add(new FileOutConfig(coreModelTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/entity/"
-//                            + fileSonPath + tableInfo.getEntityName() + "DO" + StringPool.DOT_JAVA;
-//                }
-//            });
+            focList.add(new FileOutConfig(coreModelTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/entity/"
+                            + fileSonPath + tableInfo.getEntityName() + "DO" + StringPool.DOT_JAVA;
+                }
+            });
             focList.add(new FileOutConfig(coreMapperJavaTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
@@ -145,15 +145,15 @@ public class CodeGenerator {
                             + fileSonPath + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
                 }
             });
-//            focList.add(new FileOutConfig(coreServiceJavaTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/service/"
-//                            + fileSonPath + "I"+ tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
-//                }
-//            });
+            focList.add(new FileOutConfig(coreServiceJavaTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/service/"
+                            + fileSonPath + "I"+ tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
+                }
+            });
             focList.add(new FileOutConfig(coreServiceImplJavaTemplatePath) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
@@ -161,77 +161,77 @@ public class CodeGenerator {
                             + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/service/"
                             + fileSonPath + "impl/"+ tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
                 }
-//            });
-//            focList.add(new FileOutConfig(coreModelBoTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/bo/"
-//                            + fileSonPath + tableInfo.getEntityName() + "BO" + StringPool.DOT_JAVA;
-//                }
-//            });
-//            focList.add(new FileOutConfig(coreModelRequestBoTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/bo/"
-//                            + fileSonPath + tableInfo.getEntityName() + "RequestBO" + StringPool.DOT_JAVA;
-//                }
-//            });
-//            focList.add(new FileOutConfig(coreMapStructTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/convert/"
-//                            + fileSonPath + tableInfo.getEntityName() + "Struct" + StringPool.DOT_JAVA;
-//                }
-//            });
-//            focList.add(new FileOutConfig(coreClientServiceImplJavaTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/impl/"
-//                            + fileSonPath + tableInfo.getEntityName() + "ApiServiceImpl" + StringPool.DOT_JAVA;
-//                }
+            });
+            focList.add(new FileOutConfig(coreModelBoTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/bo/"
+                            + fileSonPath + tableInfo.getEntityName() + "BO" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(coreModelRequestBoTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/bo/"
+                            + fileSonPath + tableInfo.getEntityName() + "RequestBO" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(coreMapStructTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/convert/"
+                            + fileSonPath + tableInfo.getEntityName() + "Struct" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(coreClientServiceImplJavaTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName + SLASH + PrivateFile.CGILD_PHTH + SLASH + "/impl/"
+                            + fileSonPath + tableInfo.getEntityName() + "ApiServiceImpl" + StringPool.DOT_JAVA;
+                }
             });
         }
-//        if (CHILD_MODEL_CLIENT.equals(childModelName)) {
-//            focList.add(new FileOutConfig(clientDtoTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + PrivateFile.CGILD_PHTH + SLASH + "dto/"
-//                            + fileSonPath + tableInfo.getEntityName() + "DTO" + StringPool.DOT_JAVA;
-//                }
-//            });
-//            focList.add(new FileOutConfig(clientRequestDtoTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + PrivateFile.CGILD_PHTH + SLASH + "dto/"
-//                            + fileSonPath + tableInfo.getEntityName() + "RequestDTO" + StringPool.DOT_JAVA;
-//                }
-//            });
-//            focList.add(new FileOutConfig(clientRequestPageDtoTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + PrivateFile.CGILD_PHTH + SLASH + "dto/"
-//                            + fileSonPath + tableInfo.getEntityName() + "PageRequestDTO" + StringPool.DOT_JAVA;
-//                }
-//            });
-//            focList.add(new FileOutConfig(clientServiceJavaTemplatePath) {
-//                @Override
-//                public String outputFile(TableInfo tableInfo) {
-//                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
-//                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + PrivateFile.CGILD_PHTH + SLASH + "service/"
-//                            + fileSonPath + "I" + tableInfo.getEntityName() + "ApiService" + StringPool.DOT_JAVA;
-//                }
-//            });
-//        }
+        if (CHILD_MODEL_CLIENT.equals(childModelName)) {
+            focList.add(new FileOutConfig(clientDtoTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + PrivateFile.CGILD_PHTH + SLASH + "dto/"
+                            + fileSonPath + tableInfo.getEntityName() + "DTO" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(clientRequestDtoTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + PrivateFile.CGILD_PHTH + SLASH + "dto/"
+                            + fileSonPath + tableInfo.getEntityName() + "RequestDTO" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(clientRequestPageDtoTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + PrivateFile.CGILD_PHTH + SLASH + "dto/"
+                            + fileSonPath + tableInfo.getEntityName() + "PageRequestDTO" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(clientServiceJavaTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName
+                            + "/src/main/java/com/ideal/hos/" + modelName + "/" + childModelName +SLASH + PrivateFile.CGILD_PHTH + SLASH + "service/"
+                            + fileSonPath + "I" + tableInfo.getEntityName() + "ApiService" + StringPool.DOT_JAVA;
+                }
+            });
+        }
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
 
