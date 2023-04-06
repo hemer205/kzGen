@@ -11,6 +11,7 @@ import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.par
 import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath}.${entity}SibService;
 import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo${cfg.sonPath}.${entity}VO;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -45,6 +46,15 @@ public class ${entity}SibServiceImpl implements ${entity}SibService {
     public Boolean update${entity}ById(${entity}Param ${table.entityPath}Param) {
         ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
         return ${table.entityPath}ApiService.update${entity}ById(${table.entityPath}RequestDto);
+    }
+    @Override
+    public Boolean saveOrUpdate${entity}(${entity}Param ${table.entityPath}Param) {
+        Long id = ${table.entityPath}Param.getId();
+        if (ObjectUtils.isEmpty(id)) {
+            return save${entity}(${table.entityPath}Param);
+        } else {
+            return update${entity}ById(${table.entityPath}Param);
+        }
     }
 
     @Override
