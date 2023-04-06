@@ -59,7 +59,17 @@ public class ${table.controllerName} {
     public CommonResult<Boolean> update${entity}ById(@RequestBody @Validated(UpdateGroup.class) ${entity}Param ${table.entityPath}Param) {
         return CommonResult.success(${table.entityPath}SibService.update${entity}ById(${table.entityPath}Param));
     }
-
+    /**
+     * 报错或根据ID修改$!{table.comment}
+     *
+     * @param ${table.entityPath}Param 对象
+     * @return Boolean
+     */
+    @ApiOperation(value = "报错或根据ID修改")
+    @PostMapping("/saveOrUpdate")
+    public CommonResult<Boolean> saveOrUpdate(@RequestBody ${entity}Param ${table.entityPath}Param) {
+        return CommonResult.success(${table.entityPath}SibService.saveOrUpdate${entity}(${table.entityPath}Param));
+    }
     /**
      * 根据ID集合删除$!{table.comment}
      *
