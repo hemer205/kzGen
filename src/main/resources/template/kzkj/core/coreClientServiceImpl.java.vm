@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.ideal.hos.common.utils.InitBeanUtil;
 import com.ideal.hos.common.utils.Constant;
 import java.time.LocalDateTime;
+import com.ideal.hos.common.holder.UserContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -80,6 +81,7 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
 
     @Override
     public List<${entity}DTO> findListByCondition(${entity}RequestDTO ${table.entityPath}RequestDTO) {
+        ${table.entityPath}RequestDTO.setOrgId(UserContextHolder.getUser().getOrganizationId());
         List<${entity}BO> ${table.entityPath}BOList = ${table.entityPath}Service.findListByCondition(${table.entityPath}RequestDTO);
         List<${entity}DTO> ${table.entityPath}DTOS = ${entity}Struct.INSTANCE.boToDto(${table.entityPath}BOList);
         return ${table.entityPath}DTOS;
@@ -87,6 +89,7 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
 
     @Override
     public CommonPage<${entity}DTO> pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDTO) {
+        ${table.entityPath}PageRequestDTO.setOrgId(UserContextHolder.getUser().getOrganizationId());
         CommonPage<${entity}BO> commonPage = ${table.entityPath}Service.pageList(${table.entityPath}PageRequestDTO);
         List<${entity}DTO> ${table.entityPath}DTOS = ${entity}Struct.INSTANCE.boToDto(commonPage.getRecords());
         return CommonPage.restPage(commonPage, ${table.entityPath}DTOS);
