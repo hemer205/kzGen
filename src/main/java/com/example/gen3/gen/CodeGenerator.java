@@ -16,6 +16,7 @@ import org.apache.commons.lang3.RandomUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,7 +30,7 @@ import static com.example.gen3.gen.Const.*;
  */
 public class CodeGenerator {
 
-    private static final String URL = "jdbc:mysql://139.155.74.96:3306/hos_dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
+    private static final String URL = "jdbc:mysql://139.155.74.96:3307/hos_dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "zxcd!@mysql3306.1";
@@ -96,6 +97,12 @@ public class CodeGenerator {
                 map.put("coreRequestBO", RandomUtils.nextLong());
 
                 map.put("sonPath", sonPath);
+                map.put(ORG_ID, ORG_ID);
+                map.put(CREATE_TIME, CREATE_TIME);
+                map.put(CREATE_BY, CREATE_BY);
+                map.put(UPDATE_TIME, UPDATE_TIME);
+                map.put(UPDATE_BY, UPDATE_BY);
+                map.put(IS_DELETED, IS_DELETED);
                 this.setMap(map);
             }
         };
@@ -258,18 +265,16 @@ public class CodeGenerator {
         //生成 @RestController 控制器
         strategy.setRestControllerStyle(true);
         //设置自定义继承的Entity类全称，带包名
-        //strategy.setSuperEntityClass("com.jiangfeixiang.mpdemo.BaseEntity");
         //设置自定义继承的Controller类全称，带包名
         //strategy.setSuperControllerClass("com.jiangfeixiang.mpdemo.BaseController");
         //设置自定义基础的Entity类，公共字段
-//        strategy.setSuperEntityColumns("id");
 
         strategy.setSuperServiceClass(IService.class);
         strategy.setSuperServiceImplClass(ServiceImpl.class);
         strategy.setSuperMapperClass("BaseMapper");
         //驼峰转连字符
         strategy.setControllerMappingHyphenStyle(true);
-//        strategy.setSuperEntityClass("com.ideal.hos."+modelName+".core.sys.entity.BaseEntity");
+        strategy.setSuperEntityClass("com.ideal.hos."+modelName+".core.sys.entity.BaseEntity");
 //        strategy.setSuperEntityColumns("createTime");
         //表名前缀
         strategy.setTablePrefix(PrivateFile.TABLE_PREFIX);

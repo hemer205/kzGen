@@ -34,4 +34,33 @@ public interface Const {
     /**
      * 子模块列表 ************************************
      */
+
+    /**
+     * 创建时间
+     */
+     String CREATE_TIME = "createTime";
+    /**
+     * 创建人
+     */
+     String CREATE_BY = "createBy";
+    /**
+     * 修改时间
+     */
+     String UPDATE_TIME = "updateTime";
+    /**
+     * 修改人
+     */
+     String UPDATE_BY = "updateBy";
+    /**
+     * 是否删除
+     */
+     String IS_DELETED = "isDeleted";
+    /**
+     * ID
+     */
+     String ID = "id";
+    /**
+     * 机构 ID
+     */
+     String ORG_ID = "orgId";
 }
