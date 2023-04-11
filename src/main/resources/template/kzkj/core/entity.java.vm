@@ -10,6 +10,7 @@ import jdk.jfr.Description;
 #if(${chainModel})
 import lombok.experimental.Accessors;
 #end
+import com.ideal.hos.${cfg.modelName}.core.entity.base.BaseDO;
 #end
 /**
  * <p>
@@ -31,12 +32,7 @@ import lombok.experimental.Accessors;
   #end
 #end
 @TableName("${table.name}")
-#if(${superEntityClass})
-public class ${entity}DO extends ${superEntityClass}<${entity}DO> {
-#else
-public class ${entity}DO implements Serializable {
-#end
-
+public class ${entity}DO extends BaseDO {
 #if(${entitySerialVersionUID})
     private static final long serialVersionUID = ${cfg.coreEntity}L;
 #end
