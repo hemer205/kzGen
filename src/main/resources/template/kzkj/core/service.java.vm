@@ -23,23 +23,23 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}DO> 
 
     /**
       * 保存$!{table.comment}
-      * @param ${cfg.cgildPhth}RequestBo
+      * @param ${table.entityPath}RequestBo
       * @return
       */
-    ${entity}BO save${entity}(${entity}RequestBO ${cfg.cgildPhth}RequestBo);
+    ${entity}BO save${entity}(${entity}RequestBO ${table.entityPath}RequestBo);
     /**
       * 保存$!{table.comment}
-      * @param ${cfg.cgildPhth}RequestBoList
+      * @param ${table.entityPath}RequestBoList
       * @return
       */
-    List<${entity}BO> saveBatch${entity}(List<${entity}RequestBO> ${cfg.cgildPhth}RequestBoList);
+    List<${entity}BO> saveBatch${entity}(List<${entity}RequestBO> ${table.entityPath}RequestBoList);
 
     /**
      * 修改$!{table.comment}
-     * @param ${cfg.cgildPhth}RequestBo
+     * @param ${table.entityPath}RequestBo
      * @return
      */
-    Boolean update${entity}ById(${entity}RequestBO ${cfg.cgildPhth}RequestBo);
+    Boolean update${entity}ById(${entity}RequestBO ${table.entityPath}RequestBo);
 
     /**
      * 根据ID删除（物理删除）
@@ -63,17 +63,17 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}DO> 
 
     /**
      * 根据条件查询
-     * @param ${cfg.cgildPhth}RequestDto
+     * @param ${table.entityPath}RequestDto
      * @return
      */
-    List<${entity}BO> findListByCondition(${entity}RequestDTO ${cfg.cgildPhth}RequestDto);
+    List<${entity}BO> findListByCondition(${entity}RequestDTO ${table.entityPath}RequestDto);
 
     /**
      * 分页查询
-     * @param ${cfg.cgildPhth}PageRequestDto
+     * @param ${table.entityPath}PageRequestDto
      * @return
      */
-    CommonPage<${entity}BO> pageList(${entity}PageRequestDTO ${cfg.cgildPhth}PageRequestDto);
+    CommonPage<${entity}BO> pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
     /**
      * 根据ID集合查询
      * @param ids
