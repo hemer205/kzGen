@@ -40,7 +40,7 @@ public class ${entity}DO extends BaseDO {
 ## ----------  BEGIN 字段循环遍历  ----------
 #foreach($field in ${table.fields})
 #if(
-!(${field.propertyName} == ${cfg.orgId} ||
+!(
     ${field.propertyName} == ${cfg.createTime} ||
     ${field.propertyName} == ${cfg.createBy} ||
     ${field.propertyName} == ${cfg.updateTime} ||
