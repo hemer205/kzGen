@@ -40,8 +40,8 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
     public ${entity}DTO save${entity}(${entity}RequestDTO ${table.entityPath}RequestDto) {
         ${entity}RequestBO ${table.entityPath}RequestBo = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDto);
         //校验数据
-        checkData(${table.entityPath}RequestBo);
         InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(),UserContextHolder.getUser(),Constant.CREATE);
+        checkData(${table.entityPath}RequestBo);
         ${entity}BO ${table.entityPath}Bo = ${table.entityPath}Service.save${entity}(${table.entityPath}RequestBo);
         ${entity}DTO ${table.entityPath}Dto = ${entity}Struct.INSTANCE.boToDto(${table.entityPath}Bo);
         return ${table.entityPath}Dto;
@@ -60,9 +60,9 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
     @Transactional(rollbackFor = Exception.class)
     public Boolean update${entity}ById(${entity}RequestDTO ${table.entityPath}RequestDto) {
         ${entity}RequestBO ${table.entityPath}RequestBo = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDto);
+        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(),UserContextHolder.getUser(), Constant.UPDATE);
         //校验数据
         checkData(${table.entityPath}RequestBo);
-        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(),UserContextHolder.getUser(), Constant.UPDATE);
         return ${table.entityPath}Service.update${entity}ById(${table.entityPath}RequestBo);
     }
 
@@ -81,7 +81,7 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
 
     @Override
     public List<${entity}DTO> findListByCondition(${entity}RequestDTO ${table.entityPath}RequestDTO) {
-        ${table.entityPath}RequestDTO.setOrgId(UserContextHolder.getUser().getOrganizationId());
+        ${table.entityPath}RequestDTO.setOrgId(UserContextHolder.getUser().getOrgId());
         List<${entity}BO> ${table.entityPath}BOList = ${table.entityPath}Service.findListByCondition(${table.entityPath}RequestDTO);
         List<${entity}DTO> ${table.entityPath}DTOS = ${entity}Struct.INSTANCE.boToDto(${table.entityPath}BOList);
         return ${table.entityPath}DTOS;
@@ -89,7 +89,7 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
 
     @Override
     public CommonPage<${entity}DTO> pageList(${entity}PageRequestDTO ${table.entityPath}PageRequestDTO) {
-        ${table.entityPath}PageRequestDTO.setOrgId(UserContextHolder.getUser().getOrganizationId());
+        ${table.entityPath}PageRequestDTO.setOrgId(UserContextHolder.getUser().getOrgId());
         CommonPage<${entity}BO> commonPage = ${table.entityPath}Service.pageList(${table.entityPath}PageRequestDTO);
         List<${entity}DTO> ${table.entityPath}DTOS = ${entity}Struct.INSTANCE.boToDto(commonPage.getRecords());
         return CommonPage.restPage(commonPage, ${table.entityPath}DTOS);
