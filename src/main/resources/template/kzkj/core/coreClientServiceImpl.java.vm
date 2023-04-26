@@ -60,9 +60,9 @@ public class ${entity}ApiServiceImpl implements I${entity}ApiService {
     @Transactional(rollbackFor = Exception.class)
     public Boolean update${entity}ById(${entity}RequestDTO ${table.entityPath}RequestDto) {
         ${entity}RequestBO ${table.entityPath}RequestBo = ${entity}Struct.INSTANCE.requestDtoToBo(${table.entityPath}RequestDto);
-        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(),UserContextHolder.getUser(), Constant.UPDATE);
         //校验数据
         checkData(${table.entityPath}RequestBo);
+        InitBeanUtil.init(${table.entityPath}RequestBo, LocalDateTime.now(),UserContextHolder.getUser(), Constant.UPDATE);
         return ${table.entityPath}Service.update${entity}ById(${table.entityPath}RequestBo);
     }
 
