@@ -68,7 +68,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
         LambdaUpdateWrapper<${entity}DO> wrapper = new LambdaUpdateWrapper<>();
         wrapper.in(${entity}DO::getId, ids)
                  .set(${entity}DO::getIsDeleted, Boolean.TRUE)
-                 .set(${entity}DO::getUpdateBy, UserContextHolder.getUser().getId())
+                 .set(${entity}DO::getUpdateBy, UserContextHolder.getUser().getUserId())
                  .set(${entity}DO::getUpdateTime, LocalDateTime.now());
         return update(wrapper);
     }
