@@ -1,23 +1,19 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.controller${cfg.sonPath};
 
-import com.ideal.hos.common.common.CommonPage;
-import com.ideal.hos.common.common.CommonResult;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}PageParam;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}Param;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath}.${entity}SibService;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo${cfg.sonPath}.${entity}VO;
+import com.hit.common.toolkit.common.CommonResult;
+import com.hit.common.toolkit.util.common.CommonPage;
+import com.hit.common.toolkit.validator.group.AddGroup;
+import com.hit.common.toolkit.validator.group.UpdateGroup;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ideal.hos.common.validator.group.AddGroup;
-import com.ideal.hos.common.validator.group.UpdateGroup;
 
-import javax.validation.constraints.NotEmpty;
 import javax.annotation.Resource;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**
@@ -35,7 +31,7 @@ import java.util.List;
 public class ${table.controllerName} {
 
     @Resource
-    private ${entity}SibService ${table.entityPath}SibService;
+    private I${entity}Service ${table.entityPath}Service;
     /**
      * 保存$!{table.comment}
      *
@@ -44,8 +40,8 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "保存")
     @PostMapping("/save")
-    public CommonResult<Boolean> save(@RequestBody @Validated(AddGroup.class) ${entity}Param ${table.entityPath}Param) {
-        return CommonResult.success(${table.entityPath}SibService.save${entity}(${table.entityPath}Param));
+    public CommonResult<${entity}VO> save(@RequestBody @Validated(AddGroup.class) ${entity}Param ${table.entityPath}Param) {
+        return CommonResult.success(${table.entityPath}Service.save${entity}(${table.entityPath}Param));
     }
 
     /**
@@ -56,8 +52,8 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "根据ID修改")
     @PostMapping("/updateById")
-    public CommonResult<Boolean> update${entity}ById(@RequestBody @Validated(UpdateGroup.class) ${entity}Param ${table.entityPath}Param) {
-        return CommonResult.success(${table.entityPath}SibService.update${entity}ById(${table.entityPath}Param));
+    public CommonResult<${entity}VO> update${entity}ById(@RequestBody @Validated(UpdateGroup.class) ${entity}Param ${table.entityPath}Param) {
+        return CommonResult.success(${table.entityPath}Service.update${entity}ById(${table.entityPath}Param));
     }
     /**
      * 保存或根据ID修改$!{table.comment}
@@ -67,8 +63,8 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "保存或根据ID修改")
     @PostMapping("/saveOrUpdate")
-    public CommonResult<Boolean> saveOrUpdate(@RequestBody ${entity}Param ${table.entityPath}Param) {
-        return CommonResult.success(${table.entityPath}SibService.saveOrUpdate${entity}(${table.entityPath}Param));
+    public CommonResult<${entity}VO> saveOrUpdate(@RequestBody ${entity}Param ${table.entityPath}Param) {
+        return CommonResult.success(${table.entityPath}Service.saveOrUpdate${entity}(${table.entityPath}Param));
     }
     /**
      * 根据ID集合删除$!{table.comment}
@@ -79,7 +75,7 @@ public class ${table.controllerName} {
     @ApiOperation(value = "根据ID集合删除")
     @PostMapping("/deleteByIds")
     public CommonResult<Boolean> deleteByIds(@RequestBody @NotEmpty(message = "参数 IDS 不能为空！")  List<Long> ids) {
-        return CommonResult.success(${table.entityPath}SibService.deleteByIds(ids));
+        return CommonResult.success(${table.entityPath}Service.deleteByIds(ids));
     }
 
     /**
@@ -91,7 +87,7 @@ public class ${table.controllerName} {
     @ApiOperation(value = "根据ID查询")
     @PostMapping("/getById")
     public CommonResult<${entity}VO> get${entity}VoById(@RequestBody ${entity}Param ${table.entityPath}Param) {
-        return CommonResult.success(${table.entityPath}SibService.get${entity}VoById(${table.entityPath}Param));
+        return CommonResult.success(${table.entityPath}Service.get${entity}VoById(${table.entityPath}Param));
     }
 
     /**
@@ -103,7 +99,7 @@ public class ${table.controllerName} {
     @ApiOperation(value = "根据条件查询")
     @PostMapping("/findListByCondition")
     public CommonResult<List<${entity}VO>> find${entity}List(@RequestBody ${entity}Param ${table.entityPath}Param) {
-        return CommonResult.success(${table.entityPath}SibService.findListByCondition(${table.entityPath}Param));
+        return CommonResult.success(${table.entityPath}Service.findListByCondition(${table.entityPath}Param));
     }
 
     /**
@@ -115,7 +111,7 @@ public class ${table.controllerName} {
     @ApiOperation(value = "根据条件分页查询")
     @PostMapping("/pageList")
     public CommonResult<CommonPage<${entity}VO>> pageList(@RequestBody @Validated ${entity}PageParam ${table.entityPath}PageParam) {
-        CommonPage<${entity}VO> pageVOList = ${table.entityPath}SibService.pageList(${table.entityPath}PageParam);
+        CommonPage<${entity}VO> pageVOList = ${table.entityPath}Service.pageList(${table.entityPath}PageParam);
         return CommonResult.success(pageVOList);
     }
 

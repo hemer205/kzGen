@@ -64,4 +64,35 @@ public interface ${entity}Convert {
      * @return
      */
     ${entity}PageRequestDTO pageParamToPageRequestDto(${entity}PageParam ${table.entityPath}PageParam);
+
+    /**
+     * 类型转换
+     *
+     * @param ${table.entityPath}RequestDtoList
+     * @return
+     */
+    List<${entity}DO> dtoToDo(List<${entity}RequestDTO> ${table.entityPath}RequestDtoList);
+
+    /**
+     * 类型转换
+     *
+     * @param ${table.entityPath}RequestDto
+     * @return
+     */
+    ${entity}DO dtoToDo(${entity}RequestDTO ${table.entityPath}RequestDto);
+
+    /**
+     * 类型转换
+     * @param ${table.entityPath}Do
+     * @return
+     */
+        ${entity}DTO doToDto(${entity}DO ${table.entityPath}Do);
+    /**
+     * 类型转换
+     * @param ${table.entityPath}DoList
+     * @return
+     */
+    List<${entity}DTO> doToDto(List<${entity}DO> ${table.entityPath}DoList);
+
+
 }

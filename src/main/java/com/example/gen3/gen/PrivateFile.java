@@ -15,12 +15,12 @@ public interface PrivateFile {
     /**
      * 表名
      */
-    String TABLE_NAME_STR = "base_order_sub_classes";
+    String TABLE_NAME_STR = "pat_patient_health_info,pat_patient_history";
 
     /**
      * 表前缀
      */
-    String TABLE_PREFIX = "base_";
+    String TABLE_PREFIX = "pat_";
 
     /**
      * 模块名
@@ -30,7 +30,7 @@ public interface PrivateFile {
     /**
      * 大模块
      */
-    String CGILD_PHTH = "basic";
+    String CGILD_PHTH = "base";
 
     Boolean HAVE = false;
 
@@ -43,10 +43,10 @@ public interface PrivateFile {
     /**
      * 项目路径
      */
-    String PROJECT_PATH = "D:\\work\\code\\ideal-hos-server";
+    String PROJECT_PATH = "D:\\work4\\ideal-hos-server";
 
 
-    String AUTHOR = "Yi";
+    String AUTHOR = "hzf";
 
 
 
@@ -63,9 +63,9 @@ public interface PrivateFile {
             String sonPath = StringUtils.hasLength(name) ? Const.DROP + name : "";
             //示例："workflow/"
             String fileSonPath = StringUtils.hasLength(name) ? name + Const.SLASH : "";
-//            CodeGenerator.codeGeneratorSib(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, PrivateFile.MODEL_BASE, sonPath, fileSonPath);
+            CodeGenerator.codeGeneratorSib(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, PrivateFile.MODEL_BASE, sonPath, fileSonPath);
             CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CORE, sonPath, fileSonPath);
-//            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CLIENT, sonPath, fileSonPath);
+            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, PrivateFile.MODEL_BASE, CHILD_MODEL_CLIENT, sonPath, fileSonPath);
         }
     }
 

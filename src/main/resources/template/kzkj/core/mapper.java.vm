@@ -1,9 +1,7 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.mapper${cfg.sonPath};
 
-import com.ideal.hos.common.mybatis.EasyBaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ideal.hos.${cfg.modelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}PageRequestDTO;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO;
+import com.hit.common.mybatis.plus.EasyBaseMapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 /**

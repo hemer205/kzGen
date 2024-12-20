@@ -10,7 +10,6 @@ import jdk.jfr.Description;
 #if(${chainModel})
 import lombok.experimental.Accessors;
 #end
-import com.ideal.hos.${cfg.modelName}.core.${cfg.cgildPhth}.entity.base.BaseDO;
 #end
 /**
  * <p>

@@ -1,10 +1,8 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath};
 
 
-import com.ideal.hos.common.common.CommonPage;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}PageParam;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}Param;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo${cfg.sonPath}.${entity}VO;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.hit.common.toolkit.util.common.CommonPage;
 
 import java.util.List;
 
@@ -16,7 +14,7 @@ import java.util.List;
  * @author ${author}
  * @since ${date}
  */
-public interface ${entity}SibService {
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}DO> {
 
     /**
      * 保存$!{table.comment}
@@ -24,7 +22,7 @@ public interface ${entity}SibService {
      * @param ${table.entityPath}Param
      * @return
      */
-    Boolean save${entity}(${entity}Param ${table.entityPath}Param);
+    ${entity}VO save${entity}(${entity}Param ${table.entityPath}Param);
 
     /**
      * 保存$!{table.comment}
@@ -40,14 +38,14 @@ public interface ${entity}SibService {
      * @param ${table.entityPath}Param
      * @return
      */
-    Boolean update${entity}ById(${entity}Param ${table.entityPath}Param);
+    ${entity}VO update${entity}ById(${entity}Param ${table.entityPath}Param);
     /**
      * 新增或修改接口 有ID则保存，没有ID则新增
      *
      * @param ${table.entityPath}Param
      * @return
      */
-    Boolean saveOrUpdate${entity}(${entity}Param ${table.entityPath}Param);
+    ${entity}VO saveOrUpdate${entity}(${entity}Param ${table.entityPath}Param);
 
     /**
      * 根据ID集合删除

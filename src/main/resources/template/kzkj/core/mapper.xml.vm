@@ -34,7 +34,7 @@
     <select id="pageList" resultType="com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO">
         select <include refid="Base_Column_List"/>
         from ${table.name}
-        where is_deleted  =  0
+        where is_deleted  =  false
     </select>
     <update id="update${entity}ById" parameterType="com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO">
         update ${table.name}

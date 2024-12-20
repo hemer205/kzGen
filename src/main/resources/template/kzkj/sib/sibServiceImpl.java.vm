@@ -1,19 +1,21 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath}.impl;
 
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}DTO;
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}PageRequestDTO;
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}RequestDTO;
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.service${cfg.sonPath}.I${entity}ApiService;
-import com.ideal.hos.common.common.CommonPage;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert${cfg.sonPath}.${entity}Convert;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}PageParam;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}Param;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.service${cfg.sonPath}.${entity}SibService;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo${cfg.sonPath}.${entity}VO;
-import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
-import javax.annotation.Resource;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hit.common.toolkit.common.Constant;
+import com.hit.common.toolkit.util.InitBeanUtil;
+import com.hit.common.toolkit.util.common.CommonPage;
+import com.hit.common.toolkit.validator.Assert;
+import com.hit.internal.deploy.security.ContextHolder;
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,30 +27,39 @@ import java.util.List;
  * @since ${date}
  */
 @Service
-public class ${entity}SibServiceImpl implements ${entity}SibService {
+public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapperName}, ${entity}DO> implements ${table.serviceName} {
 
-    @Resource
-    private I${entity}ApiService ${table.entityPath}ApiService;
     @Override
-    public Boolean save${entity}(${entity}Param ${table.entityPath}Param) {
+    public ${entity}VO save${entity}(${entity}Param ${table.entityPath}Param) {
         ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
-        ${table.entityPath}ApiService.save${entity}(${table.entityPath}RequestDto);
-        return Boolean.TRUE;
+        //校验数据
+        InitBeanUtil.init(${table.entityPath}RequestDto, LocalDateTime.now(),ContextHolder.getUser(),Constant.CREATE);
+        checkData(${table.entityPath}RequestDto);
+        ${entity}DO ${table.entityPath}Do = ${entity}Convert.INSTANCE.dtoToDo(${table.entityPath}RequestDto);
+        Assert.isTrue(save(${table.entityPath}Do),"新增失败！");
+        ${entity}DTO ${table.entityPath}Dto = ${entity}Convert.INSTANCE.doToDto(${table.entityPath}Do);
+        return ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
     }
     @Override
     public Boolean saveBatch${entity}(List<${entity}Param> ${table.entityPath}ParamList) {
         List<${entity}RequestDTO> ${table.entityPath}RequestDtoList = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}ParamList);
-        ${table.entityPath}ApiService.saveBatch${entity}(${table.entityPath}RequestDtoList);
+        InitBeanUtil.init(${table.entityPath}RequestDtoList, LocalDateTime.now(),ContextHolder.getUser(),Constant.CREATE);
+        List<${entity}DO> ${table.entityPath}DoList = ${entity}Convert.INSTANCE.dtoToDo(${table.entityPath}RequestDtoList);
+        Assert.isTrue(saveBatch(${table.entityPath}DoList),"新增失败！");
         return Boolean.TRUE;
     }
 
     @Override
-    public Boolean update${entity}ById(${entity}Param ${table.entityPath}Param) {
+    public ${entity}VO update${entity}ById(${entity}Param ${table.entityPath}Param) {
         ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
-        return ${table.entityPath}ApiService.update${entity}ById(${table.entityPath}RequestDto);
+        InitBeanUtil.init(${table.entityPath}RequestDto, LocalDateTime.now(),ContextHolder.getUser(), Constant.UPDATE);
+        ${entity}DO ${table.entityPath}Do = ${entity}Convert.INSTANCE.boToDo(${table.entityPath}RequestDto);
+        baseMapper.update${entity}ById(${table.entityPath}Do);
+        ${entity}DTO ${table.entityPath}Dto = ${entity}Convert.INSTANCE.doToDto(${table.entityPath}Do);
+        return ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
     }
     @Override
-    public Boolean saveOrUpdate${entity}(${entity}Param ${table.entityPath}Param) {
+    public ${entity}VO saveOrUpdate${entity}(${entity}Param ${table.entityPath}Param) {
         Long id = ${table.entityPath}Param.getId();
         if (ObjectUtils.isEmpty(id)) {
             return save${entity}(${table.entityPath}Param);
@@ -59,26 +70,49 @@ public class ${entity}SibServiceImpl implements ${entity}SibService {
 
     @Override
     public Boolean deleteByIds(List<Long> ids) {
-        return ${table.entityPath}ApiService.deleteByIds(ids);
+        LambdaUpdateWrapper<${entity}DO> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.in(${entity}DO::getId, ids)
+                .set(${entity}DO::getIsDeleted, Boolean.TRUE)
+                .set(${entity}DO::getUpdateBy, ContextHolder.getUser().getUserId())
+                .set(${entity}DO::getUpdateTime, LocalDateTime.now());
+        return update(wrapper);
     }
 
     @Override
     public ${entity}VO get${entity}VoById(${entity}Param ${table.entityPath}Param) {
-        ${entity}DTO ${table.entityPath}Dto =  ${table.entityPath}ApiService.get${entity}VoById(${table.entityPath}Param.getId());
-        return  ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
+        ${entity}DO ${table.entityPath}Do = getById(${table.entityPath}Param.getId());
+        ${entity}DTO ${table.entityPath}Dto = ${entity}Convert.INSTANCE.doToDto(${table.entityPath}Do);
+        return ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
     }
 
     @Override
     public List<${entity}VO> findListByCondition(${entity}Param ${table.entityPath}Param) {
         ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
-        List<${entity}DTO> ${table.entityPath}DtoList = ${table.entityPath}ApiService.findListByCondition(${table.entityPath}RequestDto);
-        return ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}DtoList);
+        ${table.entityPath}RequestDto.setOrgId(ContextHolder.getUser().getOrgId());
+        QueryWrapper<${entity}DO> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(${entity}DO::getIsDeleted, Boolean.FALSE);
+        List<${entity}DO> ${table.entityPath}DoList = baseMapper.selectList(queryWrapper);
+        if (!CollectionUtils.isEmpty(${table.entityPath}DoList)) {
+            return ${entity}Convert.INSTANCE.dtoToVo(${entity}Convert.INSTANCE.doToDto(${table.entityPath}DoList));
+        }
+        return Collections.emptyList();
     }
 
     @Override
     public CommonPage<${entity}VO> pageList(${entity}PageParam ${table.entityPath}PageParam) {
         ${entity}PageRequestDTO ${table.entityPath}PageRequestDto = ${entity}Convert.INSTANCE.pageParamToPageRequestDto(${table.entityPath}PageParam);
-        CommonPage<${entity}DTO> result = ${table.entityPath}ApiService.pageList(${table.entityPath}PageRequestDto);
-        return CommonPage.restPage(result, ${entity}Convert.INSTANCE.dtoToVo(result.getRecords()));
+        ${table.entityPath}PageRequestDto.setOrgId(ContextHolder.getUser().getOrgId());
+        IPage<${entity}DO> page = new Page<>(${table.entityPath}PageRequestDto.getPageNum(), ${table.entityPath}PageRequestDto.getPageSize());
+        List<${entity}DO> ${table.entityPath}Dos = baseMapper.pageList(page, ${table.entityPath}PageRequestDto);
+        List<${entity}DTO> ${table.entityPath}Dtos  = ${entity}Convert.INSTANCE.doToDto(${table.entityPath}Dos);
+        return CommonPage.restPage(page, ${entity}Convert.INSTANCE.dtoToVo(List<${entity}DTO> ${table.entityPath}Dtos));
+    }
+
+    /**
+     * 校验数据
+     * @param ${table.entityPath}RequestDto
+     */
+    private void checkData(${entity}RequestDTO ${table.entityPath}RequestDto) {
+
     }
 }

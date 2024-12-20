@@ -31,10 +31,15 @@ import static com.example.gen3.gen.PrivateFile.CGILD_PHTH;
  */
 public class CodeGenerator {
 
-    private static final String URL = "jdbc:mysql://139.155.74.96:3307/hos_dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
+    private static final String URL = "jdbc:mysql://192.168.110.72:3308/his_dz_sit?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "zxcd!@mysql3306.1";
+
+//    private static final String URL = "jdbc:mysql://127.0.0.1:3306/local?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
+//    private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+//    private static final String USERNAME = "root";
+//    private static final String PASSWORD = "root";
 
     public static void codeGenerator(String author, String tableNameStr, String modelName, String childModelName, String sonPath, String fileSonPath) {
         if (StringUtils.isEmpty(tableNameStr)) {
@@ -420,7 +425,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                            + "service/" + fileSonPath + tableInfo.getEntityName() + "SibService" + StringPool.DOT_JAVA;
+                            + "service/I" + fileSonPath + tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
                 }
             });
 
@@ -429,7 +434,7 @@ public class CodeGenerator {
                 public String outputFile(TableInfo tableInfo) {
                     return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
                             + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
-                            + "service/" + fileSonPath + "impl/" + tableInfo.getEntityName() + "SibServiceImpl" + StringPool.DOT_JAVA;
+                            + "service/" + fileSonPath + "impl/I" + tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
                 }
             });
 
