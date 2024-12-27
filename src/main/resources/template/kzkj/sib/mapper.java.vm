@@ -1,0 +1,30 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.mapper${cfg.sonPath};
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.hit.common.mybatis.plus.EasyBaseMapper;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+/**
+ * <p>
+ * $!{table.comment} Mapper 接口
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+
+public interface ${table.mapperName} extends EasyBaseMapper<${entity}DO> {
+
+    /**
+     * 分页查询
+     * @param ${table.entityPath}PageRequestDto
+     * @return
+     */
+    List<${entity}DO> pageList(@Param("page")IPage<${entity}DO> page, @Param("${table.entityPath}PageRequestDto")${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
+    /**
+     * 根据ID进行修改
+     * @param ${table.entityPath}Do
+     * @return
+     */
+     int update${entity}ById(@Param("${table.entityPath}Do") ${entity}DO ${table.entityPath}Do);
+}

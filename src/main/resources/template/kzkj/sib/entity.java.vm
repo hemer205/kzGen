@@ -1,0 +1,66 @@
+package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath};
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+#if(${entityLombokModel})
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import jdk.jfr.Description;
+#if(${chainModel})
+import lombok.experimental.Accessors;
+#end
+#end
+/**
+ * <p>
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${entityLombokModel})
+@Data
+  #if(${superEntityClass})
+@EqualsAndHashCode(callSuper = true)
+  #else
+@EqualsAndHashCode(callSuper = false)
+  #end
+  #if(${chainModel})
+@Accessors(chain = true)
+  #end
+#end
+@TableName("${table.name}")
+public class ${entity}DO extends BaseDO {
+#if(${entitySerialVersionUID})
+    private static final long serialVersionUID = ${cfg.coreEntity}L;
+#end
+
+## ----------  BEGIN 字段循环遍历  ----------
+#foreach($field in ${table.fields})
+#if(
+!(
+    ${field.propertyName} == ${cfg.createTime} ||
+    ${field.propertyName} == ${cfg.createBy} ||
+    ${field.propertyName} == ${cfg.updateTime} ||
+    ${field.propertyName} == ${cfg.updateBy} ||
+    ${field.propertyName} == ${cfg.isDeleted})
+)
+#if("$!field.comment" != "")
+    /**
+     * ${field.comment}
+     */
+#end
+#if(${field.keyFlag})
+## 主键
+  #if(${field.keyIdentityFlag})
+    @TableId(value = "${field.annotationColumnName}", type = IdType.AUTO)
+  #end
+## 普通字段
+#end
+    @Description("${field.comment}")
+    private ${field.propertyType} ${field.propertyName};
+#end
+## ----------  END 字段循环遍历  ----------
+#end
+}

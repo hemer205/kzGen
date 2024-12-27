@@ -15,12 +15,12 @@ public interface PrivateFile {
     /**
      * 表名
      */
-    String TABLE_NAME_STR = "pat_patient_account,pat_patient_merge,base_sys_parameter_config";
+    String TABLE_NAME_STR = "base_sys_parameter_config";
 
     /**
      * 表前缀
      */
-    String TABLE_PREFIX = "pat_";
+    String TABLE_PREFIX = "base_";
 
     /**
      * 模块名

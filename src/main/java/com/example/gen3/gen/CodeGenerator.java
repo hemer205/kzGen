@@ -116,16 +116,16 @@ public class CodeGenerator {
         String coreServiceJavaTemplatePath = "/template/kzkj/core/service.java.vm";
         String coreServiceImplJavaTemplatePath = "/template/kzkj/core/serviceImpl.java.vm";
         String coreClientServiceImplJavaTemplatePath = "/template/kzkj/core/coreClientServiceImpl.java.vm";
-        String coreMapperJavaTemplatePath = "/template/kzkj/core/mapper.java.vm";
-        String coreXmlTemplatePath = "/template/kzkj/core/mapper.xml.vm";
-        String coreModelTemplatePath = "/template/kzkj/core/entity.java.vm";
+        String coreMapperJavaTemplatePath = "/template/kzkj/sib/mapper.java.vm";
+        String coreXmlTemplatePath = "/template/kzkj/sib/mapper.xml.vm";
+        String coreModelTemplatePath = "/template/kzkj/sib/entity.java.vm";
         String coreModelBoTemplatePath = "/template/kzkj/core/entityBO.java.vm";
         String coreModelRequestBoTemplatePath = "/template/kzkj/core/entityRequestBO.java.vm";
         String coreMapStructTemplatePath = "/template/kzkj/core/mapStruct/mapStruct.java.vm";
 
-        String clientDtoTemplatePath = "/template/kzkj/client/entityDTO.java.vm";
-        String clientRequestDtoTemplatePath = "/template/kzkj/client/entityRequestDTO.java.vm";
-        String clientRequestPageDtoTemplatePath = "/template/kzkj/client/entityRequestPageDTO.java.vm";
+        String clientDtoTemplatePath = "/template/kzkj/sib/entityDTO.java.vm";
+        String clientRequestDtoTemplatePath = "/template/kzkj/sib/entityRequestDTO.java.vm";
+        String clientRequestPageDtoTemplatePath = "/template/kzkj/sib/entityRequestPageDTO.java.vm";
         String clientServiceJavaTemplatePath = "/template/kzkj/client/service.java.vm";
 
         //自定义输出配置
