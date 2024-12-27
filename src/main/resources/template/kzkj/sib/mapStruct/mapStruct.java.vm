@@ -1,11 +1,5 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.convert${cfg.sonPath};
 
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}DTO;
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}PageRequestDTO;
-import com.ideal.hos.${cfg.childModelName}.client.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}RequestDTO;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}PageParam;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.param${cfg.sonPath}.${entity}Param;
-import com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.vo${cfg.sonPath}.${entity}VO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

@@ -15,7 +15,7 @@ public interface PrivateFile {
     /**
      * 表名
      */
-    String TABLE_NAME_STR = "pat_patient_health_info,pat_patient_history";
+    String TABLE_NAME_STR = "pat_patient_account,pat_patient_merge,base_sys_parameter_config";
 
     /**
      * 表前缀
@@ -30,7 +30,7 @@ public interface PrivateFile {
     /**
      * 大模块
      */
-    String CGILD_PHTH = "base";
+    String CGILD_PHTH = "dts";
 
     Boolean HAVE = false;
 

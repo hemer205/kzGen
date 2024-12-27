@@ -1,7 +1,6 @@
 package com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.controller${cfg.sonPath};
 
 import com.hit.common.toolkit.common.CommonResult;
-import com.hit.common.toolkit.util.common.CommonPage;
 import com.hit.common.toolkit.validator.group.AddGroup;
 import com.hit.common.toolkit.validator.group.UpdateGroup;
 import io.swagger.annotations.Api;

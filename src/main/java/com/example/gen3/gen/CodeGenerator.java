@@ -31,7 +31,7 @@ import static com.example.gen3.gen.PrivateFile.CGILD_PHTH;
  */
 public class CodeGenerator {
 
-    private static final String URL = "jdbc:mysql://192.168.110.72:3308/his_dz_sit?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
+    private static final String URL = "jdbc:mysql://192.168.110.72:3308/his_ca_sit?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "zxcd!@mysql3306.1";
