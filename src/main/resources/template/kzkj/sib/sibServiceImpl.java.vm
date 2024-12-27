@@ -104,7 +104,7 @@ public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapp
         IPage<${entity}DO> page = new Page<>(${table.entityPath}PageRequestDto.getPageNum(), ${table.entityPath}PageRequestDto.getPageSize());
         List<${entity}DO> ${table.entityPath}Dos = baseMapper.pageList(page, ${table.entityPath}PageRequestDto);
         List<${entity}DTO> ${table.entityPath}Dtos  = ${entity}Convert.INSTANCE.doToDto(${table.entityPath}Dos);
-        return CommonPage.restPage(page, ${entity}Convert.INSTANCE.dtoToVo( ${table.entityPath}Dtos));
+        return PageUtils.restPage(page, ${entity}Convert.INSTANCE.dtoToVo( ${table.entityPath}Dtos));
     }
 
     /**
