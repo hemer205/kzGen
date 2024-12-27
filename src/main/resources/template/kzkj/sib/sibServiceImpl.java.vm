@@ -90,6 +90,7 @@ public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapp
         ${table.entityPath}RequestDto.setOrgId(ContextHolder.getUser().getOrgId());
         QueryWrapper<${entity}DO> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(${entity}DO::getIsDeleted, Boolean.FALSE);
+        queryWrapper.lambda().eq(${entity}DO::getOrgId, ContextHolder.getUser().getOrgId());
         List<${entity}DO> ${table.entityPath}DoList = baseMapper.selectList(queryWrapper);
         if (!ObjectUtils.isEmpty(${table.entityPath}DoList)) {
             return ${entity}Convert.INSTANCE.dtoToVo(${entity}Convert.INSTANCE.doToDto(${table.entityPath}DoList));

@@ -30,7 +30,7 @@ public interface PrivateFile {
     /**
      * 大模块
      */
-    String CGILD_PHTH = "dts";
+    String CGILD_PHTH = "base";
 
     Boolean HAVE = false;
 
