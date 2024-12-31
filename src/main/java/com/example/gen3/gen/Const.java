@@ -18,7 +18,7 @@ public interface Const {
     String MODEL_BILL = "ideal-hos-bill";
     String MODEL_COMMON = "common";
     String MODEL_DTS = "dts";
-    String MODEL_BASE = "base";
+    String MODEL_BASE = "patient";
     String MODEL_EMR = "emr";
     String MODEL_MATERIAL = "material";
     String MODEL_PAT = "pat";

@@ -44,7 +44,7 @@ public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapp
         List<${entity}RequestDTO> ${table.entityPath}RequestDtoList = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}ParamList);
         InitBeanUtil.init(${table.entityPath}RequestDtoList, LocalDateTime.now(),ContextHolder.getUser(),Constant.CREATE);
         List<${entity}DO> ${table.entityPath}DoList = ${entity}Convert.INSTANCE.dtoToDo(${table.entityPath}RequestDtoList);
-        Assert.isTrue(saveBatch(${table.entityPath}DoList),"新增失败！");
+        Assert.isTrue(baseMapper.insertBatch(${table.entityPath}DoList) > 0,"新增失败！");
         return Boolean.TRUE;
     }
 
