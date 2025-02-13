@@ -38,7 +38,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "批量保存")
     @PostMapping("/saveBatch")
-    public CommonResult<Boolean> save(@RequestBody @Validated(AddGroup.class) List<${entity}Param> ${table.entityPath}ParamList) {
+    public CommonResult<Boolean> save${entity}(@RequestBody @Validated(AddGroup.class) List<${entity}Param> ${table.entityPath}ParamList) {
         return CommonResult.success(${table.entityPath}SibService.saveBatch${entity}(${table.entityPath}ParamList));
     }
     /**

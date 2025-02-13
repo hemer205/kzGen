@@ -15,12 +15,12 @@ public interface PrivateFile {
     /**
      * 表名
      */
-    String TABLE_NAME_STR = "pat_patient_special";
+    String TABLE_NAME_STR = "stc_bank_back";
 
     /**
      * 表前缀
      */
-    String TABLE_PREFIX = "pat_";
+    String TABLE_PREFIX = "stc_";
 
     /**
      * 模块名
@@ -30,7 +30,7 @@ public interface PrivateFile {
     /**
      * 大模块
      */
-    String CGILD_PHTH = "patient";
+    String CGILD_PHTH = "bank";
 
     Boolean HAVE = false;
 
@@ -64,8 +64,8 @@ public interface PrivateFile {
             //示例："workflow/"
             String fileSonPath = StringUtils.hasLength(name) ? name + Const.SLASH : "";
             CodeGenerator.codeGeneratorSib(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, PrivateFile.MODEL_BASE, sonPath, fileSonPath);
-            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, CHILD_MODEL_CORE, sonPath, fileSonPath);
-            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, CHILD_MODEL_CLIENT, sonPath, fileSonPath);
+//            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, CHILD_MODEL_CORE, sonPath, fileSonPath);
+//            CodeGenerator.codeGenerator(PrivateFile.AUTHOR, tableNameStr, MODEL_SIB, CHILD_MODEL_CLIENT, sonPath, fileSonPath);
         }
     }
 

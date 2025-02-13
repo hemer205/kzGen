@@ -31,10 +31,10 @@ import static com.example.gen3.gen.PrivateFile.CGILD_PHTH;
  */
 public class CodeGenerator {
 
-    private static final String URL = "jdbc:mysql://192.168.110.72:3308/his_ca_sit?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/dz_sit?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "zxcd!@mysql3306.1";
+    private static final String PASSWORD = "root";
 
 //    private static final String URL = "jdbc:mysql://127.0.0.1:3306/local?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai";
 //    private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
@@ -52,8 +52,9 @@ public class CodeGenerator {
         // 1. 全局配置
         GlobalConfig globalConfig = new GlobalConfig();
         //生成文件的输出目录
-        globalConfig.setOutputDir(PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName + "/src/main/java");
+//        globalConfig.setOutputDir(PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + modelName + SLASH + MODEL_PREFIX + modelName + "-" + childModelName + "/src/main/java");
         //Author设置作者
+        globalConfig.setOutputDir(PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + SLASH + MODEL_SIB + "/src/main/java");
         globalConfig.setAuthor(author);
         //是否覆盖文件
         globalConfig.setFileOverride(PrivateFile.FILE_OVERRIDE);
@@ -343,6 +344,13 @@ public class CodeGenerator {
                 map.put("childModelName", modelNameTwo);
                 map.put("cgildPhth", CGILD_PHTH);
                 map.put("param", RandomUtils.nextLong());
+                // client
+                map.put("clientDTO", RandomUtils.nextLong());
+                map.put("clientRequestDTO", RandomUtils.nextLong());
+                map.put("clientRequestPageDTO", RandomUtils.nextLong());
+                //core
+                map.put("coreEntity", RandomUtils.nextLong());
+                map.put("coreEntityBO", RandomUtils.nextLong());
                 map.put("paramPage", RandomUtils.nextLong());
                 map.put("vo", RandomUtils.nextLong());
 
@@ -364,6 +372,13 @@ public class CodeGenerator {
         String sibServiceImplJavaTemplatePath = "/template/kzkj/sib/sibServiceImpl.java.vm";
         String sibVoJavaTemplatePath = "/template/kzkj/sib/entityVO.java.vm";
         String mapStructJavaTemplatePath = "/template/kzkj/sib/mapStruct/mapStruct.java.vm";
+
+        String coreModelTemplatePath = "/template/kzkj/sib/entity.java.vm";
+        String clientDtoTemplatePath = "/template/kzkj/sib/entityDTO.java.vm";
+        String clientRequestDtoTemplatePath = "/template/kzkj/sib/entityRequestDTO.java.vm";
+        String clientRequestPageDtoTemplatePath = "/template/kzkj/sib/entityRequestPageDTO.java.vm";
+        String coreMapperJavaTemplatePath = "/template/kzkj/sib/mapper.java.vm";
+        String coreXmlTemplatePath = "/template/kzkj/sib/mapper.xml.vm";
 
 
         String serviceJavaTemplatePath = "/template/kzkj/core/service.java.vm";
@@ -446,6 +461,51 @@ public class CodeGenerator {
                             + "vo/" + fileSonPath + tableInfo.getEntityName() + "VO" + StringPool.DOT_JAVA;
                 }
             });
+
+            focList.add(new FileOutConfig(coreModelTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                            + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
+                            + "/entity/" + fileSonPath + tableInfo.getEntityName() + "DO" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(coreMapperJavaTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                            + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
+                            + "/mapper/" + fileSonPath + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(clientDtoTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                            + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
+                            + "dto/" + fileSonPath + tableInfo.getEntityName() + "DTO" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(clientRequestDtoTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                            + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
+                            + "dto/" + fileSonPath + tableInfo.getEntityName() + "RequestDTO" + StringPool.DOT_JAVA;
+                }
+            });
+            focList.add(new FileOutConfig(clientRequestPageDtoTemplatePath) {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    return PrivateFile.PROJECT_PATH + SLASH + MODEL_PREFIX + MODEL_SIB + "/src/main/java/com/ideal/hos/"
+                            + MODEL_SIB + SLASH + modelNameTwo + SLASH + CGILD_PHTH + SLASH
+                            + "dto/" + fileSonPath + tableInfo.getEntityName() + "PageRequestDTO" + StringPool.DOT_JAVA;
+                }
+            });
+
         }
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);

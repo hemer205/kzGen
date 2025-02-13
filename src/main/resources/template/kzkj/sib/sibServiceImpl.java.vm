@@ -53,7 +53,7 @@ public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapp
         ${entity}RequestDTO ${table.entityPath}RequestDto = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}Param);
         InitBeanUtil.init(${table.entityPath}RequestDto, LocalDateTime.now(),ContextHolder.getUser(), Constant.UPDATE);
         ${entity}DO ${table.entityPath}Do = ${entity}Convert.INSTANCE.dtoToDo(${table.entityPath}RequestDto);
-        baseMapper.update${entity}ById(${table.entityPath}Do);
+        baseMapper.updateById(${table.entityPath}Do);
         ${entity}DTO ${table.entityPath}Dto = ${entity}Convert.INSTANCE.doToDto(${table.entityPath}Do);
         return ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
     }
@@ -79,7 +79,7 @@ public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapp
 
     @Override
     public ${entity}VO get${entity}VoById(${entity}Param ${table.entityPath}Param) {
-        ${entity}DO ${table.entityPath}Do = getById(${table.entityPath}Param.getId());
+        ${entity}DO ${table.entityPath}Do = baseMapper.selectById(${table.entityPath}Param.getId());
         ${entity}DTO ${table.entityPath}Dto = ${entity}Convert.INSTANCE.doToDto(${table.entityPath}Do);
         return ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
     }

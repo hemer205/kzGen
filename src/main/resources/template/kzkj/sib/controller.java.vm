@@ -39,7 +39,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "保存")
     @PostMapping("/save")
-    public CommonResult<${entity}VO> save(@RequestBody @Validated(AddGroup.class) ${entity}Param ${table.entityPath}Param) {
+    public CommonResult<${entity}VO> save${entity}(@RequestBody @Validated(AddGroup.class) ${entity}Param ${table.entityPath}Param) {
         return CommonResult.success(${table.entityPath}Service.save${entity}(${table.entityPath}Param));
     }
 
