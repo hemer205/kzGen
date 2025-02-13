@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.mapper${cfg.sonPath}.${table.mapperName}">
+<mapper namespace="com.hit.project.hos.${cfg.cgildPhth}.mapper${cfg.sonPath}.${table.mapperName}">
 
 #if(${baseResultMap})
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO">
+    <resultMap id="BaseResultMap" type="com.hit.project.hos.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO">
 #foreach($field in ${table.fields})
 #if(${field.keyFlag})##生成主键排在第一位
         <id column="${field.name}" property="${field.propertyName}" />
@@ -31,12 +31,12 @@
     </sql>
 
 #end
-    <select id="pageList" resultType="com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO">
+    <select id="pageList" resultType="com.hit.project.hos.${cfg.cgildPhth}.dto${cfg.sonPath}.${entity}DTO">
         select <include refid="Base_Column_List"/>
         from ${table.name}
         where is_deleted  =  false
     </select>
-    <update id="update${entity}ById" parameterType="com.ideal.hos.${cfg.modelName}.${cfg.childModelName}.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO">
+    <update id="update${entity}ById" parameterType="com.hit.project.hos.${cfg.cgildPhth}.entity${cfg.sonPath}.${entity}DO">
         update ${table.name}
         <set>
             #foreach($field in ${table.fields})

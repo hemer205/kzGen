@@ -35,7 +35,7 @@ public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapp
         InitBeanUtil.init(${table.entityPath}RequestDto, LocalDateTime.now(),ContextHolder.getUser(),Constant.CREATE);
         checkData(${table.entityPath}RequestDto);
         ${entity}DO ${table.entityPath}Do = ${entity}Convert.INSTANCE.dtoToDo(${table.entityPath}RequestDto);
-        Assert.isTrue(save(${table.entityPath}Do),"新增失败！");
+        Assert.isTrue(save(${table.entityPath}Do), "新增失败！");
         ${entity}DTO ${table.entityPath}Dto = ${entity}Convert.INSTANCE.doToDto(${table.entityPath}Do);
         return ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}Dto);
     }
@@ -44,7 +44,7 @@ public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapp
         List<${entity}RequestDTO> ${table.entityPath}RequestDtoList = ${entity}Convert.INSTANCE.paramToRequestDto(${table.entityPath}ParamList);
         InitBeanUtil.init(${table.entityPath}RequestDtoList, LocalDateTime.now(),ContextHolder.getUser(),Constant.CREATE);
         List<${entity}DO> ${table.entityPath}DoList = ${entity}Convert.INSTANCE.dtoToDo(${table.entityPath}RequestDtoList);
-        Assert.isTrue(baseMapper.insertBatch(${table.entityPath}DoList) > 0,"新增失败！");
+        Assert.isTrue(baseMapper.insertBatch(${table.entityPath}DoList) > 0, "新增失败！");
         return Boolean.TRUE;
     }
 
@@ -100,12 +100,11 @@ public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapp
 
     @Override
     public CommonPage<${entity}VO> pageList(${entity}PageParam ${table.entityPath}PageParam) {
-        ${entity}PageRequestDTO ${table.entityPath}PageRequestDto = ${entity}Convert.INSTANCE.pageParamToPageRequestDto(${table.entityPath}PageParam);
-        ${table.entityPath}PageRequestDto.setOrgId(ContextHolder.getUser().getOrgId());
-        IPage<${entity}DO> page = new Page<>(${table.entityPath}PageRequestDto.getPageNum(), ${table.entityPath}PageRequestDto.getPageSize());
-        List<${entity}DO> ${table.entityPath}Dos = baseMapper.pageList(page, ${table.entityPath}PageRequestDto);
-        List<${entity}DTO> ${table.entityPath}Dtos  = ${entity}Convert.INSTANCE.doToDto(${table.entityPath}Dos);
-        return PageUtils.restPage(page, ${entity}Convert.INSTANCE.dtoToVo( ${table.entityPath}Dtos));
+        ${entity}PageRequestDTO requestDto = ${entity}Convert.INSTANCE.pageParamToPageRequestDto(${table.entityPath}PageParam);
+        requestDto.setOrgId(ContextHolder.getUser().getOrgId());
+        IPage<${entity}DTO> page = new Page<>(requestDto.getPageNum(), requestDto.getPageSize());
+        List<${entity}DTO> ${table.entityPath}DtoList = baseMapper.pageList(page, requestDto);
+        return PageUtils.restPage(page, ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}DtosList));
     }
 
     /**

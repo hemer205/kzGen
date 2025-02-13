@@ -17,10 +17,10 @@ public interface ${table.mapperName} extends EasyBaseMapper<${entity}DO> {
 
     /**
      * 分页查询
-     * @param ${table.entityPath}PageRequestDto
+     * @param requestDto
      * @return
      */
-    List<${entity}DO> pageList(@Param("page")IPage<${entity}DO> page, @Param("${table.entityPath}PageRequestDto")${entity}PageRequestDTO ${table.entityPath}PageRequestDto);
+    List<${entity}DTO> pageList(@Param("page")IPage<${entity}DTO> page, @Param("${table.entityPath}PageRequestDto")${entity}PageRequestDTO requestDto);
     /**
      * 根据ID进行修改
      * @param ${table.entityPath}Do
