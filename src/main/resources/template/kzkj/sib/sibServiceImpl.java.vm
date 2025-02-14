@@ -104,7 +104,7 @@ public class I${entity}ServiceImpl extends ${superServiceImplClass}<${table.mapp
         requestDto.setOrgId(ContextHolder.getUser().getOrgId());
         IPage<${entity}DTO> page = new Page<>(requestDto.getPageNum(), requestDto.getPageSize());
         List<${entity}DTO> ${table.entityPath}DtoList = baseMapper.pageList(page, requestDto);
-        return PageUtils.restPage(page, ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}DtosList));
+        return PageUtils.restPage(page, ${entity}Convert.INSTANCE.dtoToVo(${table.entityPath}DtoList));
     }
 
     /**
