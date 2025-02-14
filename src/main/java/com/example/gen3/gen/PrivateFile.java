@@ -15,7 +15,7 @@ public interface PrivateFile {
     /**
      * 表名
      */
-    String TABLE_NAME_STR = "stc_bank_back";
+    String TABLE_NAME_STR = "stc_settlement_pay_mode";
 
     /**
      * 表前缀
@@ -30,7 +30,7 @@ public interface PrivateFile {
     /**
      * 大模块
      */
-    String CGILD_PHTH = "bank";
+    String CGILD_PHTH = "mode";
 
     Boolean HAVE = false;
 
